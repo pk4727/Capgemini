@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo</title>
+
     <style>
         body {
             background-color: lightblue;
@@ -29,12 +30,18 @@
 
 <body>
     <p>Welcome to the javaScript learning phase !</p>
-    <button id="a"> one </button>
+    <button id="a"> Rock </button>
+    <button id="b"> Paper </button>
+    <button id="c"> Scissors </button>
+
+    <!-- external javaScript connection -->
+    <script src="javaScript.js"></script> 
 </body>
 
-<script>
+<!-- internal javaScript -->
+<script> 
     document.getElementById("a").addEventListener("click", function () {
-        alert("Button clicked!");
+        alert("Rock clicked!");
     });
 </script>
 
