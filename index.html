@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <style>
+        body {
+            background-color: lightblue;
+            color: darkblue;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: white;
+            border: 2px solid darkblue;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Welcome to the javaScript learning phase !</p>
+    <button id="a"> one </button>
+</body>
+
+<script>
+    document.getElementById("a").addEventListener("click", function () {
+        alert("Button clicked!");
+    });
+</script>
+
+</html>
