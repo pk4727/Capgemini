@@ -6,6 +6,7 @@
 # check chenges by " git status"
 # add changes to repository by " git add . " (for all) or " git add filename " (fro individual)
 # save permanently by " git commit -m 'message which is displayed' "
+# save push on the github "git push -u origin main"
 
 # edit in txt file by " vi filename.txt " then for Save and quit/exit vi " :wq or ZZ " 
     --> " i " — Switch to Insert mode.

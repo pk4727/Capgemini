@@ -71,6 +71,15 @@ for (let key in dict) {
     console.log("Key: " + key + ", Value: " + dict[key]);
 }
 
+dict.age = 26; // updating value in object
+console.log("Updated Age: " + dict.age); // accessing updated value in object
+
+dict.country = "India"; // adding new key-value pair to object
+console.log("New Country: " + dict.country); // accessing new key-value pair in object 
+
+delete dict.city; // deleting key-value pair from object
+console.log("After deletion, City: " + dict.city); // accessing deleted key-value pair 
+
 
 // while loop
 let i = 0;
