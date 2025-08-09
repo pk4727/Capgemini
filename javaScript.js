@@ -66,20 +66,10 @@ for (let num of arr) {
 }
 
 // for in loop
-let dict = { name: "Pk", age: 25, city: "Pune" }; // dictionary is object in js
+let dict = { name: "Pk", age: 25, city: "Pune" , "state": "jharkhand"}; // dictionary is object in js
 for (let key in dict) {
     console.log("Key: " + key + ", Value: " + dict[key]);
 }
-
-dict.age = 26; // updating value in object
-console.log("Updated Age: " + dict.age); // accessing updated value in object
-
-dict.country = "India"; // adding new key-value pair to object
-console.log("New Country: " + dict.country); // accessing new key-value pair in object 
-
-delete dict.city; // deleting key-value pair from object
-console.log("After deletion, City: " + dict.city); // accessing deleted key-value pair 
-
 
 // while loop
 let i = 0;
@@ -134,6 +124,15 @@ let person = {
 };
 console.log(person.greet() + " , " + person.getAge()); // calling method of object
 console.log("Name: " + person.name); // accessing object property
+
+person.age = 26; // updating value in object
+console.log("Updated Age: " + person.age); // accessing updated value in object
+
+person.country = "India"; // adding new key-value pair to object
+console.log("New Country: " + person.country); // accessing new key-value pair in object 
+
+delete person.country; // deleting key-value pair from object
+console.log("After deletion, country: " + person.country); // accessing deleted key-value pair 
 
 
 // arrays

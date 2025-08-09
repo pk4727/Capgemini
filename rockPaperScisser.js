@@ -12,7 +12,17 @@ document.getElementById("c").addEventListener("click", function () {
     evaluate("scissors");
 });
 
+document.getElementById("d").addEventListener("click", function () {
+    resetScore();
+});
+
 let count = { won: 0, lose: 0, tie: 0 };
+
+function resetScore() {
+    count = { won: 0, lose: 0, tie: 0 };
+    console.log("Scores reset to zero.");
+}
+
 function evaluate(playerMove) {
     const computerGenerated = computerValue();
 
@@ -27,7 +37,6 @@ function evaluate(playerMove) {
             count.won++;
             console.log("You win! Rock crushes scissors.");
             console.log("Total moves :- Win = " + count.won + ", Lose = " + count.lose + ", Tie = " + count.tie);
-            count = { won: 0, lose: 0, tie: 0 };
             return;
         }
     } else if (playerMove === "paper") {
@@ -35,7 +44,6 @@ function evaluate(playerMove) {
             count.won++;
             console.log("You win! Paper covers rock.");
             console.log("Total moves :- Win = " + count.won + ", Lose = " + count.lose + ", Tie = " + count.tie);
-            count = { won: 0, lose: 0, tie: 0 };
             return;
         } else if (computerGenerated === "paper") {
             count.tie++;
@@ -52,7 +60,6 @@ function evaluate(playerMove) {
             count.won++;
             console.log("You win! Scissors cut paper.");
             console.log("Total moves :- Win = " + count.won + ", Lose = " + count.lose + ", Tie = " + count.tie);
-            count = { won: 0, lose: 0, tie: 0 };
             return;
         } else if (computerGenerated === "scissors") {
             count.tie++;
