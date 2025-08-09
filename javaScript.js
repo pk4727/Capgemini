@@ -1,7 +1,3 @@
-document.getElementById("b").addEventListener("click", function () {
-    alert("Paper clicked!");
-});
-
 console.log("Welcome to JS"); // print in console
 
 // vriables
@@ -121,8 +117,13 @@ switch (day) {
 
 
 // objects
-let person = { name: "Pk", age: 25, greet: function () { return "Hello, " + this.name; } };
-console.log(person.greet()); // calling method of object
+let person = {
+    name: "Pk",
+    age: 25,
+    greet: function () { return "Hello, " + this.name; },
+    getAge: function () { return "Your Age is " + this.age; }
+};
+console.log(person.greet() + " , " + person.getAge()); // calling method of object
 console.log("Name: " + person.name); // accessing object property
 
 
