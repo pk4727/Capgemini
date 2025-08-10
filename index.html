@@ -10,30 +10,33 @@
 
 <body>
     <h2>JavaScript</h2>
-    <hr>
 
-    <p>rockPaperScisser.js</p>
-    <h3>Rock Paper Scissors Game</h3>
-    <button id="a"> Rock </button>
-    <button id="b" class="bb"> Paper </button>
-    <button id="c"> Scissors </button>
-    <p class=rps-won></p>
-    <p class="rps-move">Let's Play Game (click on any one button)</p>
-    <p class="rps-score">Win = 0, Lose = 0, Tie = 0</p>
-    <button id="d"> Reset </button>
-
+    <div class = "rps">
+        <p>rockPaperScisser.js</p>
+        <h3>Rock Paper Scissors Game</h3>
+        <button id="a" class="rb"> ✊ </button>
+        <button id="b" class="bb"> 🖐 </button>
+        <button id="c" class="sb"> ✌ </button>
+        <p class=rps-won></p>
+        <p class="rps-move">Let's Play Game (click on any one button)</p>
+        <p class="rps-score">Win = 0, Lose = 0, Tie = 0</p>
+        <button id="d" class="rps-reset"> Reset Score </button>
+    </div>
     <hr>
 
     <p>algo.js</p>
-    <button id="e"> Subscribe </button>
+    <button id="e" class="subscribe-b"> Subscribe </button>
 
-    <br>
+    <div>
+        <p> Amazon Shipping Calculator </p>
+        <p> Order under $40 = +$10 Shipping </p>
+        <p> Order under $40 = FREE Shipping </p>
+        <input id="orderAmount" class="cost-input" placeholder="Enter Order Amount">
+        <button id="calculate" class="calculate-cost">Calculate</button>
+        <p class="shippingCost"></p>
 
-    <p> Amazon Shipping Calculator </p>
-    <p> Order under $40 = +$10 Shipping </p>
-    <p> Order under $40 = FREE Shipping </p>
-    <input id="orderAmount" type="number" placeholder="Enter Order Amount">
-    <button id="calculate">Calculate</button>
+    </div>
+    <hr>
 
 
     <!-- external javaScript connection -->

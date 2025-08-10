@@ -1,17 +1,17 @@
 // document.getElementById("b").addEventListener("click", function () {
-//     alert("Paper clicked!");
+//     alert("🖐 clicked!");
 // });
 
 document.getElementById("a").addEventListener("click", function () {
-    evaluate("rock");
+    evaluate("✊"); // Player chooses rock
     updateScoreDisplay();
 });
 document.getElementById("b").addEventListener("click", function () {
-    evaluate("paper");
+    evaluate("🖐"); // Player chooses paper
     updateScoreDisplay();
 });
 document.getElementById("c").addEventListener("click", function () {
-    evaluate("scissors");
+    evaluate("✌️"); // Player chooses scissors
     updateScoreDisplay();
 });
 
@@ -33,46 +33,46 @@ function evaluate(playerMove) {
     const computerGenerated = computerValue();
     let result = "";
 
-    if (playerMove === "rock") {
-        if (computerGenerated === "rock") {
+    if (playerMove === "✊") {
+        if (computerGenerated === "✊") {
             count.tie++;
-            result = "It's a tie! Both chose rock.";
-        } else if (computerGenerated === "paper") {
+            result = "It's a tie! Both chose ✊.";
+        } else if (computerGenerated === "🖐") {
             count.lose++;
-            result = "You lose! Paper covers rock.";
-        } else if (computerGenerated === "scissors") {
+            result = "You lose! 🖐 covers ✊.";
+        } else if (computerGenerated === "✌") {
             count.won++;
-            result = "You win! Rock crushes scissors.";
+            result = "You win! ✊ crushes ✌.";
             console.log("Total moves :- Win = " + count.won + ", Lose = " + count.lose + ", Tie = " + count.tie);
         }
     }
-    else if (playerMove === "paper") {
-        if (computerGenerated === "rock") {
+    else if (playerMove === "🖐") {
+        if (computerGenerated === "✊") {
             count.won++;
-            result = "You win! Paper covers rock.";
+            result = "You win! 🖐 covers ✊.";
             console.log("Total moves :- Win = " + count.won + ", Lose = " + count.lose + ", Tie = " + count.tie);
-        } else if (computerGenerated === "paper") {
+        } else if (computerGenerated === "🖐") {
             count.tie++;
-            result = "It's a tie! Both chose paper.";
-        } else if (computerGenerated === "scissors") {
+            result = "It's a tie! Both chose 🖐.";
+        } else if (computerGenerated === "✌") {
             count.lose++;
-            result = "You lose! Scissors cut paper.";
+            result = "You lose! ✌ cut 🖐.";
         }
     }
-    else if (playerMove === "scissors") {
-        if (computerGenerated === "rock") {
+    else if (playerMove === "✌") {
+        if (computerGenerated === "✊") {
             count.lose++;
-            result = "You lose! Rock crushes scissors.";
-        } else if (computerGenerated === "paper") {
+            result = "You lose! ✊ crushes ✌.";
+        } else if (computerGenerated === "🖐") {
             count.won++;
-            result = "You win! Scissors cut paper.";
+            result = "You win! ✌ cut 🖐.";
             console.log("Total moves :- Win = " + count.won + ", Lose = " + count.lose + ", Tie = " + count.tie);
-        } else if (computerGenerated === "scissors") {
+        } else if (computerGenerated === "✌") {
             count.tie++;
-            result = "It's a tie! Both chose scissors.";
+            result = "It's a tie! Both chose ✌.";
         }
     } else {
-        result = "Invalid move! Please choose rock, paper, or scissors.";
+        result = "Invalid move! Please choose ✊, 🖐, or ✌.";
     }
 
     // Display the result in the console and on the webpage
@@ -84,12 +84,12 @@ function evaluate(playerMove) {
 function computerValue() {
     let value = Math.random();
     if (value < 1 / 3) {
-        return 'rock';
+        return '✊';
     }
     else if (value >= 1 / 3 && value < 2 / 3) {
-        return 'paper';
+        return '🖐';
     } else {
-        return 'scissors';
+        return '✌';
     }
 }
 

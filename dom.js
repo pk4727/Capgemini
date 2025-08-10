@@ -1,4 +1,5 @@
 // document object model
+window.document.title = "DOM" // window object is not necessary to use here, but it is used to show that we can access the document object through the window object as well.
 
 // Example of DOM manipulation
 // document.body.innerHTML = "<h1>Hello, World!</h1>"; // to add a button by js in webpage
