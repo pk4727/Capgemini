@@ -66,7 +66,7 @@ for (let num of arr) {
 }
 
 // for in loop
-let dict = { name: "Pk", age: 25, city: "Pune" , "state": "jharkhand"}; // dictionary is object in js
+let dict = { name: "Pk", age: 25, city: "Pune", "state": "jharkhand" }; // dictionary is object in js
 for (let key in dict) {
     console.log("Key: " + key + ", Value: " + dict[key]);
 }
@@ -119,11 +119,16 @@ switch (day) {
 let person = {
     name: "Pk",
     age: 25,
+    rating: { // nested object
+        stars: 4.5,
+        count: 100
+    },
     greet: function () { return "Hello, " + this.name; },
-    getAge: function () { return "Your Age is " + this.age; }
+    getAge: function f() { return "Your Age is " + this.age; }
 };
 console.log(person.greet() + " , " + person.getAge()); // calling method of object
 console.log("Name: " + person.name); // accessing object property
+console.log("rating: " + person.rating.stars + " stars from " + person.rating.count + " reviews"); // accessing nested object property
 
 person.age = 26; // updating value in object
 console.log("Updated Age: " + person.age); // accessing updated value in object
@@ -133,6 +138,15 @@ console.log("New Country: " + person.country); // accessing new key-value pair i
 
 delete person.country; // deleting key-value pair from object
 console.log("After deletion, country: " + person.country); // accessing deleted key-value pair 
+
+
+// joson creation from object
+let jsonString = JSON.stringify(person); // converting object to JSON string
+console.log("JSON String: " + jsonString); // printing JSON string
+
+// parsing JSON string back to object
+let jsonObject = JSON.parse(jsonString); // converting JSON string back to object
+console.log("Parsed Object: ", jsonObject); // printing parsed object
 
 
 // arrays
@@ -154,3 +168,42 @@ console.log(greet("Pk")); // calling the function
 // arrow function
 const add = (a, b) => a + b; // arrow function
 console.log("Sum using arrow function: " + add(5, 10));
+
+
+// localStorage
+localStorage.setItem("person", person); // setting item in localStorage
+localStorage.setItem("person", JSON.stringify(person)); // setting item in localStorage as JSON string
+obj = JSON.parse(localStorage.getItem("person")); // getting item from localStorage and parsing it
+console.log("Person from localStorage: ", obj); // printing object from localStorage
+localStorage.removeItem("person"); // removing item from localStorage
+
+
+// autoboxing and unboxing
+console.log("pk".length); // accessing length property of string (autoboxing)
+console.log("pk".toUpperCase()); // calling method on string (autoboxing)
+console.log("5" + 5); // string concatenation (type coercion)
+console.log(Number("5") + 5); // converting string to number (explicit type conversion)
+
+const obj1 = { name: "Pk", age: 25 }; // object creation
+const boj2 = obj1;
+const obj3 = { name: "pk", age: 25 };
+
+console.log(obj1 === boj2); // true, same reference
+console.log(obj1 === obj3); // false, different reference
+
+// const name = obj3.name; // accessing property of object
+const { name, age } = obj3; // destructuring assignment
+console.log(name + " " + age); // printing name from destructured object
+
+const obj4 = {
+    name, //sort-hand property
+
+    // method : function() {
+    //     return "Hello, " + this.name;
+    // }
+
+    method() { //sort-hand method
+        return "Hello, " + this.name;
+    }
+}
+console.log(obj4.method()); // calling method of object with destructured properties
