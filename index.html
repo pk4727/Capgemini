@@ -5,31 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo</title>
-
-    <style>
-        body {
-            background-color: lightblue;
-            color: darkblue;
-            font-family: Arial, sans-serif;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: white;
-            border: 2px solid darkblue;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: darkblue;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Linking the CSS file -->
 </head>
 
 <body>
-    <p>javaScript !</p>
+    <h2>JavaScript</h2>
+    <hr>
+
+    <p>rockPaperScisser.js</p>
     <h3>Rock Paper Scissors Game</h3>
     <button id="a"> Rock </button>
     <button id="b" class="bb"> Paper </button>
@@ -37,16 +20,27 @@
     <p class=rps-won></p>
     <p class="rps-move">Let's Play Game (click on any one button)</p>
     <p class="rps-score">Win = 0, Lose = 0, Tie = 0</p>
-
     <button id="d"> Reset </button>
-    <br>
-    <br>
+
+    <hr>
+
+    <p>algo.js</p>
     <button id="e"> Subscribe </button>
 
+    <br>
+
+    <p> Amazon Shipping Calculator </p>
+    <p> Order under $40 = +$10 Shipping </p>
+    <p> Order under $40 = FREE Shipping </p>
+    <input id="orderAmount" type="number" placeholder="Enter Order Amount">
+    <button id="calculate">Calculate</button>
+
+
     <!-- external javaScript connection -->
+
     <!-- <script src="javaScript.js"></script> -->
-    <script src="rockPaperScisser.js"></script>
-    <script src="dom.js"></script>
+    <!-- <script src="rockPaperScisser.js"></script> -->
+    <!-- <script src="dom.js"></script> -->
     <script src="algo.js"></script>
 
     <!-- internal javaScript -->
