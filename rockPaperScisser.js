@@ -11,8 +11,24 @@ document.getElementById("b").addEventListener("click", function () {
     updateScoreDisplay();
 });
 document.getElementById("c").addEventListener("click", function () {
-    evaluate("✌️"); // Player chooses scissors
+    evaluate("✌"); // Player chooses scissors
     updateScoreDisplay();
+});
+
+// or 
+
+document.body.addEventListener("keydown", function (event) {
+    if (event.key === 'r' || event.key === 'R') {
+        evaluate("✊"); // Player chooses rock
+        updateScoreDisplay();
+    }
+    else if (event.key === 'p' || event.key === 'P') {
+        evaluate("🖐"); // Player chooses Paper
+        updateScoreDisplay();
+    } else if (event.key === 's' || event.key === 'S') {
+        evaluate("✌"); // Player chooses Scissors
+        updateScoreDisplay();
+    }
 });
 
 document.getElementById("d").addEventListener("click", function () {
@@ -71,9 +87,10 @@ function evaluate(playerMove) {
             count.tie++;
             result = "It's a tie! Both chose ✌.";
         }
-    } else {
-        result = "Invalid move! Please choose ✊, 🖐, or ✌.";
-    }
+    } 
+    // else {
+    //     result = "Invalid move! Please choose ✊, 🖐, or ✌.";
+    // }
 
     // Display the result in the console and on the webpage
     console.log(result);
