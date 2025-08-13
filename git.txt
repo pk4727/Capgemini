@@ -59,3 +59,7 @@
 6. merge main and other branch by " git merge branch_name "
 7. copy any repository of other to own by fork in github page available in right side of repository name
 8. upstream url = original url of other repository that is forked add this also for pull request of changeses
+
+
+git config user.name ""
+git config user.email ""
