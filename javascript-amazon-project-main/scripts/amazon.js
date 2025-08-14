@@ -20,14 +20,18 @@ const products = [{
 ] // storing data
 
 // cart function
-let cart = []
+let cart = [{
+    id: 1, quantity: 1
+}, {
+    id: 2, quantity: 2
+}]
 
 ProductsRendering() // rendering function called
 function ProductsRendering() { // rendering function that will send data to the frontand page
     let productsList = "";
 
     for (let i = 0; i < products.length; i++) {
-        const { id,image, name, rating, price } = products[i]; // 🔹 EDIT: used destructuring instead of 6 separate consts
+        const { id, image, name, rating, price } = products[i]; // 🔹 EDIT: used destructuring instead of 6 separate consts
         const starsRating = rating.stars;
         const countRating = rating.count;
         // console.log(image, name, starsRating, countRating, price);
@@ -97,6 +101,15 @@ function ProductsRendering() { // rendering function that will send data to the 
             //     cart.push({productName : productName, quantity:1});
             // }
             console.log(cart)
+
+            let totalQuantity = 0;
+            cart.forEach((item) => {
+                totalQuantity += item.quantity;
+            })
+            document.querySelector(".js-cart-quantity").innerHTML = totalQuantity;
+            console.log(totalQuantity);
+
+
         });
     });
 }
