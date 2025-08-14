@@ -1,6 +1,3 @@
-let cart = [{
-    id: 1, quantity: 1
-}, {
-    id: 2, quantity: 2
-}
-]
+export const cart = [];
+console.log("this is cart");
+console.log(cart);

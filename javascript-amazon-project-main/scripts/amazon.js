@@ -1,31 +1,8 @@
-const products = [{
-    id: 1,
-    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-    name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-    rating: { stars: 4.5, count: 87 },
-    price: 1090
-}, {
-    id: 2,
-    image: "images/products/intermediate-composite-basketball.jpg",
-    name: "Intermediate Size Basketball",
-    rating: { stars: 4, count: 127 },
-    price: 2095
-}, {
-    id: 3,
-    image: "images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
-    name: "Adults Plain Cotton T-Shirt - 2 Pack",
-    rating: { stars: 4.5, count: 56 },
-    price: 799
-}
-] // storing data
+// import { carta ass c } from "../data/cart.js"; // like this way u can rename the variable
+import { cart} from "../data/cart.js"; // saving data into cart.js (reusability of variable and save from conflict)
+import { products } from "../data/products.js"; // taking from products.js file
 
 // cart function
-let cart = [{
-    id: 1, quantity: 1
-}, {
-    id: 2, quantity: 2
-}]
-
 ProductsRendering() // rendering function called
 function ProductsRendering() { // rendering function that will send data to the frontand page
     let productsList = "";
@@ -75,7 +52,7 @@ function ProductsRendering() { // rendering function that will send data to the 
     }
     document.querySelector(".products-lists").innerHTML = productsList;
 
-    // adding to cart
+    // adding saved data to cart.js
     document.querySelectorAll(".add-to-cart-button").forEach((button) => {
         button.addEventListener('click', () => {
             // converting data attribute name to camelCase name that is present in add to cart button (data-prod-name -> productName)
@@ -107,9 +84,7 @@ function ProductsRendering() { // rendering function that will send data to the 
                 totalQuantity += item.quantity;
             })
             document.querySelector(".js-cart-quantity").innerHTML = totalQuantity;
-            console.log(totalQuantity);
-
-
+            // console.log(totalQuantity);
         });
     });
 }
