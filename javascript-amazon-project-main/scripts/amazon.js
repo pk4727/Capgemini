@@ -1,5 +1,5 @@
 // import { carta ass c } from "../data/cart.js"; // like this way u can rename the variable
-import { cart} from "../data/cart.js"; // saving data into cart.js (reusability of variable and save from conflict)
+import { addToCart, cartQuantity } from "../data/cart.js"; // saving data into cart.js (reusability of variable and save from conflict)
 import { products } from "../data/products.js"; // taking from products.js file
 
 // cart function
@@ -8,10 +8,10 @@ function ProductsRendering() { // rendering function that will send data to the 
     let productsList = "";
 
     for (let i = 0; i < products.length; i++) {
-        const { id, image, name, rating, price } = products[i]; // 🔹 EDIT: used destructuring instead of 6 separate consts
+        const { id, image, name, rating, priceCents } = products[i]; // 🔹 EDIT: used destructuring instead of 6 separate consts
         const starsRating = rating.stars;
         const countRating = rating.count;
-        // console.log(image, name, starsRating, countRating, price);
+        // console.log(image, name, starsRating, countRating, priceCents);
 
         const html = `
         <div class="product-container">
@@ -23,7 +23,7 @@ function ProductsRendering() { // rendering function that will send data to the 
                 <div class="product-rating-count link-primary">${countRating}</div>
             </div>
 
-            <div class="product-price"> $${(price / 100).toFixed(2)} </div>
+            <div class="product-priceCents"> $${(priceCents / 100).toFixed(2)} </div>
 
             <div class="product-quantity-container">
             <select>
@@ -52,39 +52,13 @@ function ProductsRendering() { // rendering function that will send data to the 
     }
     document.querySelector(".products-lists").innerHTML = productsList;
 
-    // adding saved data to cart.js
+    // adding data to cart and increase cartQuantity
     document.querySelectorAll(".add-to-cart-button").forEach((button) => {
         button.addEventListener('click', () => {
             // converting data attribute name to camelCase name that is present in add to cart button (data-prod-name -> productName)
             const productId = button.dataset.productId;
-            const index = cart.findIndex(item => item.product === productId);
-            if (index !== -1) {
-                cart[index].quantity += 1;
-            } else {
-                cart.push({ product: productId, quantity: 1 });
-            }
-
-            // or if u are working with name then
-
-            // let found;
-            // cart.forEach((item) => {
-            //     if(productName === item.productName){
-            //         found = item;
-            //     }
-            // });
-            // if(found){
-            //     found.quantity +=1;
-            // }else{
-            //     cart.push({productName : productName, quantity:1});
-            // }
-            console.log(cart)
-
-            let totalQuantity = 0;
-            cart.forEach((item) => {
-                totalQuantity += item.quantity;
-            })
-            document.querySelector(".js-cart-quantity").innerHTML = totalQuantity;
-            // console.log(totalQuantity);
+            addToCart(productId);
+            cartQuantity()
         });
     });
 }
