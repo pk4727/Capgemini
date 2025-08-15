@@ -1,8 +1,9 @@
 // import { carta ass c } from "../data/cart.js"; // like this way u can rename the variable
-import { addToCart, cartQuantity } from "../data/cart.js"; // saving data into cart.js (reusability of variable and save from conflict)
+import { addToCart, CalculateCartQuantity } from "../data/cart.js"; // saving data into cart.js (reusability of variable and save from conflict)
 import { products } from "../data/products.js"; // taking from products.js file
 
 // cart function
+CalculateCartQuantity()
 ProductsRendering() // rendering function called
 function ProductsRendering() { // rendering function that will send data to the frontand page
     let productsList = "";
@@ -57,8 +58,9 @@ function ProductsRendering() { // rendering function that will send data to the 
         button.addEventListener('click', () => {
             // converting data attribute name to camelCase name that is present in add to cart button (data-prod-name -> productName)
             const productId = button.dataset.productId;
+            console.log(productId);
             addToCart(productId);
-            cartQuantity()
+            CalculateCartQuantity()
         });
     });
 }

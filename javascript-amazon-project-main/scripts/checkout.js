@@ -1,28 +1,32 @@
-import { cart } from "../data/cart.js";
+import { cart, removeProduct } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 function centToDollar(centMoney) {
-    return (centMoney/100).toFixed(2);
+    return (centMoney / 100).toFixed(2);
 }
 
 let totalPrice = 0;
 let ShippingHandling = 0;
 let cartItemsSummary = "";
 
-cart.forEach((cartItems) => {
+function renderingProductChecklist() {
+    cart.forEach((cartItems) => {
 
-    let matchingProductDetails; // searching cart id into product file
-    products.forEach((product) => {
-        if (product.id === cartItems.id) {
-            matchingProductDetails = product;
-        }
-    });
-    let { id, image, name, priceCents } = matchingProductDetails;
-    totalPrice += priceCents;
-    // console.log(image, name, priceCents);
+        const matchingProductDetails = products.find(product => product.id === cartItems.id);
+        // or
+        // let matchingProductDetails; // searching cart id into product file
+        // products.forEach((product) => {
+        //     if (product.id === cartItems.id) {
+        //         matchingProductDetails = product;
+        //     }
+        // });
 
-    cartItemsSummary += `
-        <div class="cart-item-container">
+        let { id, image, name, priceCents } = matchingProductDetails;
+        totalPrice += priceCents;
+        // console.log(id, image, name, priceCents);
+
+        cartItemsSummary += `
+        <div class="cart-item-container js-cart-item-container-${id}">
             <div class="delivery-date"> Delivery date: Tuesday, June 21 </div>
 
             <div class="cart-item-details-grid">
@@ -35,8 +39,8 @@ cart.forEach((cartItems) => {
                         <span> 
                             Quantity: <span class="quantity-label">${cartItems.quantity}</span>
                         </span>
-                        <span class="update-quantity-link link-primary"> Update </span>
-                        <span class="delete-quantity-link link-primary"> Delete </span>
+                        <span class="update-quantity-link link-primary js-update-product" data-update-product = "${id}"> Update </span>
+                        <span class="delete-quantity-link link-primary js-delete-product" data-deleted-product="${id}"> Delete </span>
                     </div>
                 </div>
 
@@ -67,17 +71,36 @@ cart.forEach((cartItems) => {
             </div>
         </div>
     `;
-});
-document.querySelector('.order-summary').innerHTML = cartItemsSummary;
+    });
+    document.querySelector('.order-summary').innerHTML = cartItemsSummary;
+}
+renderingProductChecklist();
 
-let TotalBeforeTax = totalPrice + ShippingHandling;
-let EstimatedTax = TotalBeforeTax*0.1;
-let totalOrderCost = TotalBeforeTax + EstimatedTax;
 
-document.querySelector(".return-to-home-link").innerHTML = `${cart.length} items`;
-document.querySelector(".payment-summary-row-items").innerHTML = `Items (${cart.length})`;
-document.querySelector(".payment-summary-money-items").innerHTML = `$${centToDollar(totalPrice)}`
+function deleteProduct() {
+    document.querySelectorAll('.js-delete-product').forEach((link) => {
+        link.addEventListener('click', function () {
+            const productId = link.dataset.deletedProduct;
+            removeProduct(productId);
+            const itemDeleted = document.querySelector(`.js-cart-item-container-${productId}`);
+            itemDeleted.remove();
+            reviewOrder();
+        })
+    });
+}
+deleteProduct();
 
-document.querySelector(".payment-summary-money-btax").innerHTML = `$${centToDollar(TotalBeforeTax)}`;
-document.querySelector(".payment-summary-money-etax").innerHTML = `$${centToDollar(EstimatedTax)}`;
-document.querySelector(".payment-summary-money-order").innerHTML = `$${centToDollar(totalOrderCost)}`
+function reviewOrder() {
+    let TotalBeforeTax = totalPrice + ShippingHandling;
+    let EstimatedTax = TotalBeforeTax * 0.1;
+    let totalOrderCost = TotalBeforeTax + EstimatedTax;
+
+    document.querySelector(".return-to-home-link").innerHTML = `${cart.length} items`;
+    document.querySelector(".payment-summary-row-items").innerHTML = `Items (${cart.length})`;
+    document.querySelector(".payment-summary-money-items").innerHTML = `$${centToDollar(totalPrice)}`
+
+    document.querySelector(".payment-summary-money-btax").innerHTML = `$${centToDollar(TotalBeforeTax)}`;
+    document.querySelector(".payment-summary-money-etax").innerHTML = `$${centToDollar(EstimatedTax)}`;
+    document.querySelector(".payment-summary-money-order").innerHTML = `$${centToDollar(totalOrderCost)}`
+}
+reviewOrder();
