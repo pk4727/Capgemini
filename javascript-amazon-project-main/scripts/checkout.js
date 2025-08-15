@@ -22,7 +22,7 @@ const deliveryDates = [
 // let ShippingHandling = 0;
 let cartItemsSummary = "";
 
-function renderingProductChecklist() {
+function renderOrderSummary() {
     cart.forEach((cartItems) => {
         const matchingProductDetails = products.find(product => product.id === cartItems.id);
         let { id, image, name, priceCents } = matchingProductDetails;
@@ -79,7 +79,8 @@ function deliveryOptionsHtml(matchingProductDetails, cartItem) {
     });
     return allDates;
 }
-renderingProductChecklist();
+
+renderOrderSummary();
 updateDelivery();
 
 function deleteProduct() {
@@ -100,6 +101,7 @@ function updateDelivery() {
         option.addEventListener("click", () => {
             const { productId, deliveryOption } = option.dataset; // sorthand property 
             updateDeliviryOption(productId, deliveryOption);
+            // renderOrderSummary();
         });
     });
 }
