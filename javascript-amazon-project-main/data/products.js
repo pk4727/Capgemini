@@ -660,3 +660,7 @@ export const products = [
 ];
 
 export default products; // making products as default export
+
+export function getProductDetailsById(productID) {
+  return products.find(product => product.id === productID);
+}
