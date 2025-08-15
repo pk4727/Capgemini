@@ -1,5 +1,5 @@
 // Import modules
-import { cart, removeProduct, updateDeliviryOption } from "../data/cart.js";
+import { cart, removeProduct, updateDeliveryOption } from "../data/cart.js";
 import products from "../data/products.js"; // default export not require {}
 
 // ESM = EcmaScript Module version of javascript coming frm direct internet
@@ -23,11 +23,11 @@ const deliveryDates = [
 // let totalPrice = 0;
 // let ShippingHandling = 0;
 
-// Stores generated HTML for cart
-let cartItemsSummary = "";
-
 // Render cart order summary
 function renderOrderSummary() {
+    // Stores generated HTML for cart
+    let cartItemsSummary = "";
+
     cart.forEach((cartItem) => {
         const matchingProduct = products.find(product => product.id === cartItem.id);
         let { id, image, name, priceCents } = matchingProduct;
@@ -110,8 +110,9 @@ function deleteProduct() {
 function updateDelivery() {
     document.querySelectorAll('.js-delivery-option').forEach((option) => {
         option.addEventListener("click", () => {
-            const { productId, deliveryOption } = option.dataset;
-            updateDeliviryOption(productId, deliveryOption);
+            const { productId, deliveryOption } = option.dataset; // shorthand property
+            updateDeliveryOption(productId, deliveryOption);
+            renderOrderSummary();
         });
     });
 }

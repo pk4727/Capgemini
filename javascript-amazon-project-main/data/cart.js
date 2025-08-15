@@ -47,7 +47,7 @@ export function calculateCartQuantity2() {
  {string} productId - The ID of the product to update
  {string} deliveryOption - The selected delivery option ID
  */
-export function updateDeliviryOption(productId, deliveryOption) {
+export function updateDeliveryOption(productId, deliveryOption) {
     let matchingItem;
     cart.forEach((cartItem) => {
         if (cartItem.id == productId) {
