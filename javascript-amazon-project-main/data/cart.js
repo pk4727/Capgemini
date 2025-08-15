@@ -1,4 +1,12 @@
-export let cart = JSON.parse(localStorage.getItem("cart"));
+export let cart = JSON.parse(localStorage.getItem("cart"))
+if (!cart) {
+    cart = [{
+        id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+        quantity: 1,
+        deliveryOption: '1'
+    }
+    ];
+}
 
 function saveToLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -10,19 +18,19 @@ export function addToCart(productId) {
     if (index !== -1) {
         cart[index].quantity += 1;
     } else {
-        cart.push({ id: productId, quantity: 1 });
+        cart.push({ id: productId, quantity: 1, deliveryOption: '1' });
     }
 
     // or if u are working with name then
 
-    // let found;
+    // let matchingItem;
     // cart.forEach((cartItem) => {
     //     if (cartItem.id == productId) {
-    //         found = cartItem;
+    //         matchingItem = cartItem;
     //     }
     // });
-    // if (found) {
-    //     found.quantity += 1;
+    // if (matchingItem) {
+    //     matchingItem.quantity += 1;
     // } else {
     //     cart.push({ id: productId, quantity: 1 });
     // }
@@ -47,4 +55,15 @@ export function CalculateCartQuantity() {
     })
     document.querySelector(".js-cart-quantity").innerHTML = totalQuantity;
     console.log(totalQuantity);
-} 
+}
+
+export function updateDeliviryOption(productId, deliveryOption) {
+    let matchingItem;
+    cart.forEach((cartItem) => {
+        if (cartItem.id == productId) {
+            matchingItem = cartItem;
+        }
+    });
+    matchingItem.deliveryOption = deliveryOption;
+    saveToLocalStorage()
+}
