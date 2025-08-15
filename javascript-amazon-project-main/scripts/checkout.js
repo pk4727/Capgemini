@@ -44,6 +44,7 @@ function deliveryOptionsHtml(matchingProductDetails, cartItem) {
             </div> 
         `;
     });
+    renderPaymentSummary(10);
     return allDates;
 }
 
