@@ -149,13 +149,13 @@ function updateDelivery() {
 }
 
 // Using Promise.all to load all callback at one time before rendering
-Promise.all([
-    // new Promise((resolve) => {
+Promise.all([ 
+    // new Promise((resolve) => { // from XMLHttpRequest
     //     loadBackendProducts(() => {
     //         resolve();
     //     });
     // })
-    loadBackendProductsFetch()
+    loadBackendProductsFetch() // from fetch
     , new Promise((resolve) => {
         loadBackendCart(() => {
             resolve();
