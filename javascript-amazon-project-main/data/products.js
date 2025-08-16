@@ -1,5 +1,9 @@
 import { centToDollar } from '../scripts/calculation.js';
 
+export function getProductDetailsById(productID) {
+  return products.find(product => product.id === productID);
+}
+
 class Product {
   id;
   image;
@@ -26,10 +30,6 @@ class Product {
   extraInfoHTML() {
     return '';
   }
-}
-
-export function getProductDetailsById(productID) {
-  return products.find(product => product.id === productID);
 }
 
 export const products = [
