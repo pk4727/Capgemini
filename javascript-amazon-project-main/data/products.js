@@ -723,7 +723,8 @@ export function loadBackendProductsFetch() {
   const promise = fetch("https://supersimplebackend.dev/products")
     .then((responce) => {
       return responce.json();
-    }).then((productData) => {
+    })
+    .then((productData) => {
       products = productData.map((productDetails) => {
         if (productDetails.type === 'clothing') {
           return new Clothing(productDetails);
@@ -731,7 +732,11 @@ export function loadBackendProductsFetch() {
         return new Product(productDetails);
       });
       console.log("Loding product from backend fetch")
+    })
+    .catch((error) => {
+      console.log("Unexpected error. Please try again leter !");
     });
+
   return promise;
 }
 
@@ -748,7 +753,7 @@ export function loadBackendProducts(ProductsRendering) {
     console.log("Loding product from backend");
   });
 
-  xhr.addEventListener('error', () => {
+  xhr.addEventListener('error', (error) => {
     console.log("Unexpected error. Please try again leter !");
   });
 

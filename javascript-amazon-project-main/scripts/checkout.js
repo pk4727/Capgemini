@@ -149,7 +149,7 @@ function updateDelivery() {
 }
 
 // ================================================ Callback ====================================================
-/*
+
 async function loadingPage() {
     console.log("async loading");
 
@@ -168,8 +168,8 @@ async function loadingPage() {
 }
 loadingPage();
 
-*/
 
+/*
 // Using Promise.all to load all callback at one time before rendering
 Promise.all([
     new Promise((resolve) => { // from XMLHttpRequest
@@ -191,7 +191,6 @@ Promise.all([
 });
 
 
-/*
 // Using Promise to load products before rendering
 new Promise((resolve) => {
     // Call loadBackendProducts and pass a callback
