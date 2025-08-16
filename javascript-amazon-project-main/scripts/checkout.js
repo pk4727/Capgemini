@@ -1,16 +1,12 @@
 // Import modules
 import { cart, removeProduct, updateDeliveryOption } from "../data/cart.js";
 import { getProductDetailsById } from "../data/products.js";
+import { centToDollar } from "./calculation.js";
 
 // ESM = EcmaScript Module version of javascript coming frm direct internet
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"; // default export
 // or
 // const day = dayjs(); // external lib link data of dayjs coming from checkout.html
-
-// Helper: convert cents to dollars
-function centToDollar(centMoney) {
-    return (centMoney / 100).toFixed(2);
-}
 
 // Calculate delivery dates
 const dayjsCalculator = dayjs();
