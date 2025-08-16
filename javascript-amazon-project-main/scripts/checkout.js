@@ -1,5 +1,5 @@
 // Import modules
-import { cart, removeProduct, updateDeliveryOption } from "../data/cart.js";
+import { cart, removeProduct, updateDeliveryOption, loadBackendCart } from "../data/cart.js";
 import { getProductDetailsById, loadBackendProducts } from "../data/products.js";
 import { centToDollar } from "./calculation.js";
 import '../data/cart-oop.js';
@@ -157,6 +157,14 @@ new Promise((resolve) => {
         // "resolve" tells the Promise it has finished.
         resolve();
     });
+
+}).then(() => {
+    return new Promise((resolve) => {
+        loadBackendCart(() => {
+            resolve();
+        });
+    });
+
 }).then(() => { // When the promise is resolved, then() will run
     // Now safe to render because products are available
     renderOrderSummary();    // shows cart items
@@ -166,10 +174,12 @@ new Promise((resolve) => {
 });
 
 
-// // Normal callback-based usage (Initial Render & Bindings)
+// Normal callback-based usage (Initial Render & Bindings)
 // loadBackendProducts(() => { // async (asynchronousing code)
-//     renderOrderSummary();
-//     renderPaymentSummary(10);
-//     updateDelivery();
-//     deleteProduct();
+//     loadBackendCart(() => { // nested callback this increasese when new callback come so we use promise
+//         renderOrderSummary();
+//         renderPaymentSummary(10);
+//         updateDelivery();
+//         deleteProduct();
+//     });
 // });

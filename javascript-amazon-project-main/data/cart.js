@@ -1,4 +1,4 @@
-// Load cart from localStorage or initialize with default item
+// // Load cart from localStorage or initialize with default item
 export let cart = JSON.parse(localStorage.getItem("cart")) || [
     {
         id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -6,6 +6,18 @@ export let cart = JSON.parse(localStorage.getItem("cart")) || [
         deliveryOption: "1"
     }
 ];
+
+// loading cart from backend
+export function loadBackendCart(ProductsRendering) {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {
+        console.log(cart);
+        ProductsRendering() // asynchronousing code because watting till product not come from backend
+        console.log("Loding project from backend");
+    });
+    xhr.open('GET', "https://supersimplebackend.dev/cart");
+    xhr.send();
+}
 
 //  Save cart to localStorage
 function saveToLocalStorage() {
