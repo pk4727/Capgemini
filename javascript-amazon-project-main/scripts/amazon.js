@@ -8,10 +8,8 @@ ProductsRendering() // rendering function called
 function ProductsRendering() { // rendering function that will send data to the frontand page
     let productsList = "";
 
-    for (let i = 0; i < products.length; i++) {
-        const { id, image, name, rating, priceCents } = products[i]; // 🔹 EDIT: used destructuring instead of 6 separate consts
-        const starsRating = rating.stars;
-        const countRating = rating.count;
+    products.forEach((product) => {
+        const { id, image, name, rating } = product; // 🔹 EDIT: used destructuring instead of 6 separate consts
         // console.log(image, name, starsRating, countRating, priceCents);
 
         const html = `
@@ -20,11 +18,11 @@ function ProductsRendering() { // rendering function that will send data to the 
             <div class="product-name limit-text-to-2-lines"> ${name} </div>
 
             <div class="product-rating-container">
-                <img class="product-rating-stars" src="images/ratings/rating-${(starsRating * 10)}.png">
-                <div class="product-rating-count link-primary">${countRating}</div>
+                <img class="product-rating-stars" src="${product.getStarsUrl()}">
+                <div class="product-rating-count link-primary">${rating.count}</div>
             </div>
 
-            <div class="product-priceCents"> $${(priceCents / 100).toFixed(2)} </div>
+            <div class="product-priceCents"> $${product.getPrice()} </div>
 
             <div class="product-quantity-container">
             <select>
@@ -50,7 +48,7 @@ function ProductsRendering() { // rendering function that will send data to the 
         `
         productsList += html;
         // console.log(html);
-    }
+    });
     document.querySelector(".products-lists").innerHTML = productsList;
 
     // adding data to cart and increase cartQuantity
