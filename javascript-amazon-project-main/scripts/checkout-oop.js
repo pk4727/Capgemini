@@ -1,8 +1,8 @@
 // Import modules
-import { cart, removeProduct, updateDeliveryOption } from "../data/cart.js";
+import { cart } from "../data/cart-oop.js";
 import { getProductDetailsById } from "../data/products.js";
 import { centToDollar } from "./calculation.js";
-import '../data/cart-oop.js';
+
 // ESM = EcmaScript Module version of javascript coming frm direct internet
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"; // default export
 // or
@@ -112,7 +112,7 @@ function renderPaymentSummary(taxRate) {
     document.querySelector(".payment-summary-money-btax").innerHTML = `$${centToDollar(totalBeforeTax)}`;
     document.querySelector(".payment-summary-money-etax").innerHTML = `$${centToDollar(estimatedTax)}`;
     document.querySelector(".payment-summary-money-order").innerHTML = `$${centToDollar(orderTotal)}`;
-    // console.log(`${productPriceCent} \n${ShippingCent} \n${totalBeforeTax} \n${estimatedTax} \n${orderTotal}`);
+    console.log(`${productPriceCent} \n${ShippingCent} \n${totalBeforeTax} \n${estimatedTax} \n${orderTotal}`);
 }
 
 // Remove product from cart
