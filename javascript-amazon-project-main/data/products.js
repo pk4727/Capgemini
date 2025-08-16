@@ -1,7 +1,7 @@
 import { centToDollar } from '../scripts/calculation.js';
 
-export function getProductDetailsById(productID) {
-  return products.find(product => product.id === productID);
+export function getProductDetailsById(id) {
+  return products.find(product => product.id === id);
 }
 
 class Product {  // class
@@ -32,8 +32,7 @@ class Product {  // class
   }
 }
 
-// inheritance
-class clothing extends Product {
+class Clothing extends Product { // inheritance
   sizeChartLink;
 
   constructor(productDetails) {
@@ -41,7 +40,7 @@ class clothing extends Product {
     this.sizeChartLink = productDetails.sizeChartLink;
   }
 
-  extraInfoHTML() {
+  extraInfoHTML() { // method overriding
     // super.extraInfoHTML();
     return ` <a href="${this.sizeChartLink}" target="_blank"> Size chart </a> `;
   }
@@ -708,7 +707,7 @@ export const products = [
   }
 ].map((productDetails) => {
   if (productDetails.type === 'clothing') {
-    return new clothing(productDetails);
+    return new Clothing(productDetails);
   }
   return new Product(productDetails);
 }); // mapping this list of project to object of class Product
