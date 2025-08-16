@@ -53,7 +53,7 @@ function renderOrderSummary() {
 
     cart.forEach((cartItem) => {
         const matchingProduct = getProductDetailsById(cartItem.id);
-        console.log(matchingProduct);
+        // console.log(matchingProduct);
         let { id, image, name, priceCents } = matchingProduct;
 
         const deliveryDateObj = deliveryDates.find(date => date.id === cartItem.deliveryOption);
@@ -148,24 +148,45 @@ function updateDelivery() {
     });
 }
 
+// Using Promise.all to load all callback at one time before rendering
+Promise.all([
+    new Promise((resolve) => {
+        loadBackendProducts(() => {
+            resolve();
+        });
+    }), new Promise((resolve) => {
+        loadBackendCart(() => {
+            resolve();
+        });
+    })
+]).then(() => {
+    renderOrderSummary();
+    renderPaymentSummary(10);
+    updateDelivery();
+    deleteProduct();
+});
 
+
+/*
 // Using Promise to load products before rendering
 new Promise((resolve) => {
     // Call loadBackendProducts and pass a callback
     loadBackendProducts(() => {
         // When products are loaded from backend,
         // "resolve" tells the Promise it has finished.
-        resolve();
+        resolve('Resolved promise 1');
     });
 
-}).then(() => {
+}).then((resolvedMessage1) => {
+    console.log(resolvedMessage1);
     return new Promise((resolve) => {
         loadBackendCart(() => {
-            resolve();
+            resolve('Resolved promise 2');
         });
     });
 
-}).then(() => { // When the promise is resolved, then() will run
+}).then((resolvedMessage2) => { // When the promise is resolved, then() will run
+    console.log(resolvedMessage2);
     // Now safe to render because products are available
     renderOrderSummary();    // shows cart items
     renderPaymentSummary(10); // shows totals with discount/shipping
@@ -175,11 +196,12 @@ new Promise((resolve) => {
 
 
 // Normal callback-based usage (Initial Render & Bindings)
-// loadBackendProducts(() => { // async (asynchronousing code)
-//     loadBackendCart(() => { // nested callback this increasese when new callback come so we use promise
-//         renderOrderSummary();
-//         renderPaymentSummary(10);
-//         updateDelivery();
-//         deleteProduct();
-//     });
-// });
+loadBackendProducts(() => { // async (asynchronousing code)
+    loadBackendCart(() => { // nested callback this increasese when new callback come so we use promise
+        renderOrderSummary();
+        renderPaymentSummary(10);
+        updateDelivery();
+        deleteProduct();
+    });
+});
+*/

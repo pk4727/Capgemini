@@ -11,9 +11,8 @@ export let cart = JSON.parse(localStorage.getItem("cart")) || [
 export function loadBackendCart(ProductsRendering) {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', () => {
-        console.log(cart);
         ProductsRendering() // asynchronousing code because watting till product not come from backend
-        console.log("Loding project from backend");
+        console.log("Loding cart from backend");
     });
     xhr.open('GET', "https://supersimplebackend.dev/cart");
     xhr.send();
