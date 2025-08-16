@@ -1,11 +1,12 @@
 // import { carta ass c } from "../data/cart.js"; // like this way u can rename the variable
 import { addToCart, CalculateCartQuantity } from "../data/cart.js"; // saving data into cart.js (reusability of variable and save from conflict)
-import { products } from "../data/products.js"; // taking from products.js file
+import { products,loadBackendProducts } from "../data/products.js"; // taking from products.js file
 
 // cart function
 CalculateCartQuantity()
-ProductsRendering() // rendering function called
-function ProductsRendering() { // rendering function that will send data to the frontand page
+loadBackendProducts(ProductsRendering);
+// ProductsRendering() // rendering function called
+export function ProductsRendering() { // rendering function that will send data to the frontand page
     let productsList = "";
 
     products.forEach((product) => {

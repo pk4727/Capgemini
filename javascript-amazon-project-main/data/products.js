@@ -46,6 +46,7 @@ class Clothing extends Product { // inheritance
   }
 }
 
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -713,3 +714,22 @@ export const products = [
 }); // mapping this list of project to object of class Product
 
 export default products; // making products as default export
+*/
+
+// load product with the help of backend
+export let products = [];
+export function loadBackendProducts(ProductsRendering) {
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', () => {
+    products = JSON.parse(xhr.response).map((productDetails) => {
+      if (productDetails.type === 'clothing') {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });;
+    ProductsRendering()
+    console.log("Loding project from backend");
+  });
+  xhr.open('GET', "https://supersimplebackend.dev/products");
+  xhr.send();
+}

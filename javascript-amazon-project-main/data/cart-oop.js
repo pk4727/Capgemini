@@ -124,8 +124,8 @@ function Cart(localStorageName) {
 
 const cart = Cart('cart-oop');
 cart.loadFromStorage();
-console.log(cart);
+// console.log(cart);
 
 const cart2 = Cart('cart-class');
 cart2.loadFromStorage();
-console.log(cart2);
+// console.log(cart2);

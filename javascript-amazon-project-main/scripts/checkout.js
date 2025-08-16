@@ -1,12 +1,15 @@
 // Import modules
 import { cart, removeProduct, updateDeliveryOption } from "../data/cart.js";
-import { getProductDetailsById } from "../data/products.js";
+import { getProductDetailsById, loadBackendProducts } from "../data/products.js";
 import { centToDollar } from "./calculation.js";
 import '../data/cart-oop.js';
+
+
 // ESM = EcmaScript Module version of javascript coming frm direct internet
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js"; // default export
 // or
 // const day = dayjs(); // external lib link data of dayjs coming from checkout.html
+
 
 // Calculate delivery dates
 const dayjsCalculator = dayjs();
@@ -50,6 +53,7 @@ function renderOrderSummary() {
 
     cart.forEach((cartItem) => {
         const matchingProduct = getProductDetailsById(cartItem.id);
+        console.log(matchingProduct);
         let { id, image, name, priceCents } = matchingProduct;
 
         const deliveryDateObj = deliveryDates.find(date => date.id === cartItem.deliveryOption);
@@ -145,7 +149,9 @@ function updateDelivery() {
 }
 
 // Initial Render & Bindings
-renderOrderSummary();
-renderPaymentSummary(10);
-updateDelivery();
-deleteProduct();
+loadBackendProducts(() => {
+    renderOrderSummary();
+    renderPaymentSummary(10);
+    updateDelivery();
+    deleteProduct();
+});
