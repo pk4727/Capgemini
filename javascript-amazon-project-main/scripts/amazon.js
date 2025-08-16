@@ -38,6 +38,7 @@ function ProductsRendering() { // rendering function that will send data to the 
                 <option value="10">10</option>
             </select>
         </div>
+        ${product.extraInfoHTML()}
         <div class="product-spacer"></div>
 
         <div class="added-to-cart">
