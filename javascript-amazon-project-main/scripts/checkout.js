@@ -1,6 +1,6 @@
 // Import modules
 import { cart, removeProduct, updateDeliveryOption, loadBackendCart } from "../data/cart.js";
-import { getProductDetailsById, loadBackendProducts ,loadBackendProductsFetch} from "../data/products.js";
+import { getProductDetailsById, loadBackendProducts, loadBackendProductsFetch } from "../data/products.js";
 import { centToDollar } from "./calculation.js";
 import '../data/cart-oop.js';
 
@@ -148,15 +148,37 @@ function updateDelivery() {
     });
 }
 
+// ================================================ Callback ====================================================
+
+async function loadingPage() {
+    console.log("async loading");
+
+    await loadBackendProductsFetch();
+    await new Promise((resolve) => {
+        loadBackendCart(() => {
+            resolve();
+        });
+    });
+    
+    renderOrderSummary();
+    renderPaymentSummary(10);
+    updateDelivery();
+    deleteProduct();
+    console.log('await completed');
+}
+loadingPage();
+
+
+/*
 // Using Promise.all to load all callback at one time before rendering
-Promise.all([ 
+Promise.all([
     // new Promise((resolve) => { // from XMLHttpRequest
     //     loadBackendProducts(() => {
     //         resolve();
     //     });
-    // })
-    loadBackendProductsFetch() // from fetch
-    , new Promise((resolve) => {
+    // }),
+    loadBackendProductsFetch(), // from fetch
+    new Promise((resolve) => {
         loadBackendCart(() => {
             resolve();
         });
