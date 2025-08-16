@@ -154,16 +154,21 @@ async function loadingPage() {
     console.log("async loading");
 
     try {
+        // throw 'error1';
+
         await loadBackendProductsFetch();
-        await new Promise((resolve) => {
+        await new Promise((resolve, reject) => {
+
+            // throw 'error2';
             loadBackendCart(() => {
+                
+                // reject('error3');
                 resolve();
             });
         });
-
     }
     catch (error) {
-        console.log("Unexpected error. Please try again leter !");
+        console.log(error + " Unexpected error. Please try again leter !");
     }
     renderOrderSummary();
     renderPaymentSummary(10);
