@@ -139,3 +139,23 @@ console.log(cart);
 // using constructor
 const cart2 = new Cart("cart-class");
 console.log(cart2);
+
+
+// builtIn class
+let date = new Date();
+let localTime = date.toLocaleTimeString();
+console.log(date + "\nTime: " + localTime);
+
+
+// this use
+console.log(this); // undefine
+// let x = {
+//     a: 1, b: this.a
+// }; // no object so undefine and give error
+
+function sum(a, b) {
+    return `${this} = ${a + b}`;
+}
+console.log(sum(2, 5)); // undefine = 7 (if no value pass to this then it is undefine )
+console.log(sum.call('sum', 2, 5)); // but you pass a value for this and use ".call" then it will set automatecily in function
+
