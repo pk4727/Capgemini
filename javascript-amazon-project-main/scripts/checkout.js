@@ -148,10 +148,28 @@ function updateDelivery() {
     });
 }
 
-// Initial Render & Bindings
-loadBackendProducts(() => { // asynchronousing code
-    renderOrderSummary();
-    renderPaymentSummary(10);
-    updateDelivery();
-    deleteProduct();
+
+// Using Promise to load products before rendering
+new Promise((resolve) => {
+    // Call loadBackendProducts and pass a callback
+    loadBackendProducts(() => {
+        // When products are loaded from backend,
+        // "resolve" tells the Promise it has finished.
+        resolve();
+    });
+}).then(() => { // When the promise is resolved, then() will run
+    // Now safe to render because products are available
+    renderOrderSummary();    // shows cart items
+    renderPaymentSummary(10); // shows totals with discount/shipping
+    updateDelivery();        // updates delivery options
+    deleteProduct();         // handles remove from cart
 });
+
+
+// // Normal callback-based usage (Initial Render & Bindings)
+// loadBackendProducts(() => { // async (asynchronousing code)
+//     renderOrderSummary();
+//     renderPaymentSummary(10);
+//     updateDelivery();
+//     deleteProduct();
+// });
