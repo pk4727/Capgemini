@@ -1,16 +1,16 @@
 class Cart {
     cartItems;
-    localStorageName;
+    #localStorageName; // private variable
 
     // constructor
     constructor(localStorageName) {
-        this.localStorageName = localStorageName;
-        this.loadFromStorage();
+        this.#localStorageName = localStorageName;
+        this.#loadFromStorage();
     }
 
     // Load cart from localStorage or initialize with default item
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageName));
+    #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageName));
 
         if (!this.cartItems) {
             this.cartItems = [{
@@ -127,9 +127,13 @@ class Cart {
 }
 
 // without using constructor
-const cart = new Cart();
-cart.localStorageName = 'cart-oop';
-cart.loadFromStorage();
+// this give error beause it is private in class
+// const cart = new Cart();
+// cart.localStorageName = 'cart-oop';
+// cart.loadFromStorage();
+// console.log(cart);
+// so
+const cart = new Cart("cart-oop");
 console.log(cart);
 
 // using constructor
