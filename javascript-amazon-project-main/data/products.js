@@ -747,6 +747,11 @@ export function loadBackendProducts(ProductsRendering) {
     ProductsRendering() // asynchronousing code because watting till product not come from backend
     console.log("Loding product from backend");
   });
+
+  xhr.addEventListener('load', () => {
+    console.log("Unexpected error. Please try again leter !");
+  });
+
   xhr.open('GET', "https://supersimplebackend.dev/products");
   xhr.send();
 }
