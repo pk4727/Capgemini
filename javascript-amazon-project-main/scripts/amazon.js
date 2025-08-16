@@ -1,3 +1,5 @@
+// https://github.com/SuperSimpleDev/javascript-course/tree/main/2-copy-of-code // all original code here
+
 // import { carta ass c } from "../data/cart.js"; // like this way u can rename the variable
 import { addToCart, CalculateCartQuantity } from "../data/cart.js"; // saving data into cart.js (reusability of variable and save from conflict)
 import { products,loadBackendProducts } from "../data/products.js"; // taking from products.js file

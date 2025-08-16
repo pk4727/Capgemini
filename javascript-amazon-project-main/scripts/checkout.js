@@ -2,6 +2,7 @@
 import { cart, removeProduct, updateDeliveryOption, loadBackendCart } from "../data/cart.js";
 import { getProductDetailsById, loadBackendProducts, loadBackendProductsFetch } from "../data/products.js";
 import { centToDollar } from "./calculation.js";
+import { addOrder } from "../data/order.js";
 import '../data/cart-oop.js';
 
 
@@ -148,6 +149,27 @@ function updateDelivery() {
     });
 }
 
+document.querySelector('.js-place-order').addEventListener('click', async () => {
+    try {
+        const response = await fetch('https://supersimplebackend.dev/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cart: cart
+            })
+        });
+
+        const order = await response.json();
+        addOrder(order);
+
+    } catch (error) {
+        console.log(error + ' Unexpected error. Try again later.');
+    }
+    window.location.href = 'orders.html'; // this send to other page after click event
+});
+
 // ================================================ Callback ====================================================
 
 async function loadingPage() {
@@ -161,7 +183,7 @@ async function loadingPage() {
 
             // throw 'error2';
             loadBackendCart(() => {
-                
+
                 // reject('error3');
                 resolve();
             });
