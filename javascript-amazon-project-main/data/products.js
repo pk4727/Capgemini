@@ -40,7 +40,7 @@ class Clothing extends Product { // inheritance
     this.sizeChartLink = productDetails.sizeChartLink;
   }
 
-  extraInfoHTML() { // method overriding
+  extraInfoHTML() { // method overriding or polymorphism
     // super.extraInfoHTML();
     return ` <a href="${this.sizeChartLink}" target="_blank"> Size chart </a> `;
   }
