@@ -153,13 +153,18 @@ function updateDelivery() {
 async function loadingPage() {
     console.log("async loading");
 
-    await loadBackendProductsFetch();
-    await new Promise((resolve) => {
-        loadBackendCart(() => {
-            resolve();
+    try {
+        await loadBackendProductsFetch();
+        await new Promise((resolve) => {
+            loadBackendCart(() => {
+                resolve();
+            });
         });
-    });
 
+    }
+    catch (error) {
+        console.log("Unexpected error. Please try again leter !");
+    }
     renderOrderSummary();
     renderPaymentSummary(10);
     updateDelivery();
