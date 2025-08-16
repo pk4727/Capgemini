@@ -1,6 +1,6 @@
 // Import modules
 import { cart, removeProduct, updateDeliveryOption, loadBackendCart } from "../data/cart.js";
-import { getProductDetailsById, loadBackendProducts } from "../data/products.js";
+import { getProductDetailsById, loadBackendProducts ,loadBackendProductsFetch} from "../data/products.js";
 import { centToDollar } from "./calculation.js";
 import '../data/cart-oop.js';
 
@@ -150,11 +150,13 @@ function updateDelivery() {
 
 // Using Promise.all to load all callback at one time before rendering
 Promise.all([
-    new Promise((resolve) => {
-        loadBackendProducts(() => {
-            resolve();
-        });
-    }), new Promise((resolve) => {
+    // new Promise((resolve) => {
+    //     loadBackendProducts(() => {
+    //         resolve();
+    //     });
+    // })
+    loadBackendProductsFetch()
+    , new Promise((resolve) => {
         loadBackendCart(() => {
             resolve();
         });

@@ -718,6 +718,23 @@ export default products; // making products as default export
 
 // load product with the help of backend
 export let products = [];
+
+export function loadBackendProductsFetch() {
+  const promise = fetch("https://supersimplebackend.dev/products")
+    .then((responce) => {
+      return responce.json();
+    }).then((productData) => {
+      products = productData.map((productDetails) => {
+        if (productDetails.type === 'clothing') {
+          return new Clothing(productDetails);
+        }
+        return new Product(productDetails);
+      });
+      console.log("Loding product from backend fetch")
+    });
+  return promise;
+}
+
 export function loadBackendProducts(ProductsRendering) {
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load', () => {
@@ -728,7 +745,7 @@ export function loadBackendProducts(ProductsRendering) {
       return new Product(productDetails);
     });;
     ProductsRendering() // asynchronousing code because watting till product not come from backend
-    console.log("Loding project from backend");
+    console.log("Loding product from backend");
   });
   xhr.open('GET', "https://supersimplebackend.dev/products");
   xhr.send();
