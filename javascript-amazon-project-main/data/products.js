@@ -748,7 +748,7 @@ export function loadBackendProducts(ProductsRendering) {
     console.log("Loding product from backend");
   });
 
-  xhr.addEventListener('load', () => {
+  xhr.addEventListener('error', () => {
     console.log("Unexpected error. Please try again leter !");
   });
 

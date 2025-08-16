@@ -149,7 +149,7 @@ function updateDelivery() {
 }
 
 // ================================================ Callback ====================================================
-
+/*
 async function loadingPage() {
     console.log("async loading");
 
@@ -159,7 +159,7 @@ async function loadingPage() {
             resolve();
         });
     });
-    
+
     renderOrderSummary();
     renderPaymentSummary(10);
     updateDelivery();
@@ -168,16 +168,16 @@ async function loadingPage() {
 }
 loadingPage();
 
+*/
 
-/*
 // Using Promise.all to load all callback at one time before rendering
 Promise.all([
-    // new Promise((resolve) => { // from XMLHttpRequest
-    //     loadBackendProducts(() => {
-    //         resolve();
-    //     });
-    // }),
-    loadBackendProductsFetch(), // from fetch
+    new Promise((resolve) => { // from XMLHttpRequest
+        loadBackendProducts(() => {
+            resolve();
+        });
+    }),
+    // loadBackendProductsFetch(), // from fetch
     new Promise((resolve) => {
         loadBackendCart(() => {
             resolve();
