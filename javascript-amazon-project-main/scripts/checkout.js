@@ -149,7 +149,7 @@ function updateDelivery() {
 }
 
 // Initial Render & Bindings
-loadBackendProducts(() => {
+loadBackendProducts(() => { // asynchronousing code
     renderOrderSummary();
     renderPaymentSummary(10);
     updateDelivery();

@@ -727,7 +727,7 @@ export function loadBackendProducts(ProductsRendering) {
       }
       return new Product(productDetails);
     });;
-    ProductsRendering()
+    ProductsRendering() // asynchronousing code because watting till product not come from backend
     console.log("Loding project from backend");
   });
   xhr.open('GET', "https://supersimplebackend.dev/products");

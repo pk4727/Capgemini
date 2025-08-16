@@ -4,8 +4,9 @@ import { products,loadBackendProducts } from "../data/products.js"; // taking fr
 
 // cart function
 CalculateCartQuantity()
-loadBackendProducts(ProductsRendering);
+loadBackendProducts(ProductsRendering); // // asynchronousing code
 // ProductsRendering() // rendering function called
+
 export function ProductsRendering() { // rendering function that will send data to the frontand page
     let productsList = "";
 
