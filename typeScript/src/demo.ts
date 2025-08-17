@@ -94,7 +94,7 @@ obj = mixedData // ✅ no problem because arrays are objects
 // simple alias
 type ID = string | number;
 
-let userId: ID = "abc123";  
+let userId: ID = "abc123";
 userId = 101; // ✅ works
 
 type student = {
