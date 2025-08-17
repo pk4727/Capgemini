@@ -3,7 +3,8 @@ typeScript file compile to javaScript when we run it
 steps:
 # 1. "npm install -g typescript"  -> Install TypeScript globally
 # 2. "tsc -v"                     -> Check if TypeScript is installed (should return a version)
-# 3. "tsc yourfile.ts "           -> Compile your TypeScript file into JavaScript (generates yourfile.js in the same folder)
+# 3. "tsc yourfile.ts "           -> Compile your TypeScript file into JavaScript (generates yourfile.js in the same folder) 
+use "tsc yourfile.ts -w" after file name this will heil in auto save changeses
 # 4. "node yourfile.js"           -> Run the compiled JavaScript file with Node.js
 # 5. "npm install -g ts-node"     -> lets you run .ts files directly without compiling [(Optional) Install ts-node globally]
 # 6. "ts-node yourfile.ts"        -> Run your TypeScript file directly
