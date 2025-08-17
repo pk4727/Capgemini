@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 // js
 let x = 2;
 let y = 3;
@@ -123,4 +121,5 @@ var grade1;
     grade1[grade1["a"] = 5] = "a"; // = 5
 })(grade1 || (grade1 = {}));
 console.log(grade); // {0: 'u', 1: 'd', 2: 'c', 3: 'b', 4: 'a', u: 0, d: 1, c: 2, b: 3, a: 4}
+export {};
 //# sourceMappingURL=demo.js.map
