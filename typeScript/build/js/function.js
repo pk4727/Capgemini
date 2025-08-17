@@ -59,11 +59,12 @@ const infinite = () => {
     }
 };
 // infinite()
+// custom type guard
 const isNumber = (value) => {
     return true ? typeof (value) === 'number' : false;
 };
 message(isNumber(5));
-// error (never)
+// error (never type)
 const creatError = (error) => {
     throw new Error(error);
 };
