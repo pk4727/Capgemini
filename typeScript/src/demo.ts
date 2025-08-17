@@ -79,32 +79,104 @@ mixedData = myTuple // correct beacuse array not follow type strictly
 
 
 // object
-let obj: object
-obj = {}
-obj = []
-// obj = 'pk' // not correct
-obj = { name: 'pk', valid: true }
-// obj.name = true; // error
-// boj.valid = 'pk' // error
-obj = mixedData // no problem beacause array is also a object
+let obj: object   // 'object' type means it can hold any non-primitive ({} | [] | function etc.)
+
+obj = {}          // empty object - ✅ valid
+obj = []          // arrays are also objects in JS/TS - ✅ valid
+// obj = 'pk'     // ❌ error because 'pk' is a string (primitive, not object)
+obj = { name: 'pk', valid: true } // ✅ valid object
+// obj.name = true; // ❌ error (TS doesn't know 'obj' shape, only that it's 'object')
+// obj.valid = 'pk' // ❌ error (same reason above)
+obj = mixedData // ✅ no problem because arrays are objects
+
+
+// user defined type (type alias) 👉 Used to create custom types (aliases) for variables, objects, functions, unions, intersections, etc.
+// simple alias
+type ID = string | number;
+
+let userId: ID = "abc123";  
+userId = 101; // ✅ works
 
 type student = {
     name: string,
     age: number,
-    album: string[],
-    address?: string, // not compulsry to write where this type used
+    album: string[],     // array of strings
+    address?: string,    // optional property (not compulsory where this type is used)
     isSingle: boolean
 }
 
-let s1: student = {
+let s: student = {
     name: 'pk',
     age: 23,
     album: ['abc'],
     isSingle: true
 }
 
-// let s2: student = { // all field of type student not present so error
+//  let s1: student = {  // ❌ error because 'album' property is missing (required field)
 //     name: 'pk',
 //     age: 23,
 //     isSingle: true
 // }
+
+
+// interface (similar to type but interfaces are extendable and better for OOP-style code.) 
+// 👉 Used to define the shape of objects or classes. It’s like a contract that objects must follow.
+
+interface Student1 {
+    name?: string;
+    age: number;
+    isSingle: boolean;
+    album: string[];
+}
+
+// object following the contract
+let s2: Student1 = {
+    name: "Ashish",
+    age: 23,
+    isSingle: true,
+    album: ["abc"]
+};
+
+// extending an interface
+interface GraduateStudent extends Student1 {
+    degree: string;
+}
+
+let gs: GraduateStudent = {
+    name: "Pradhuman",
+    age: 25,
+    isSingle: false,
+    album: [],
+    degree: "M.Tech"
+};
+
+// function using the interface
+const represent = (s2: Student1) => {
+    if (s2.name) {
+        return `Hello ${s2.name.toUpperCase()}`;  // use toUpperCase safely (only if 'a' exists)
+    } else {
+        return "Hello !"
+    }
+}
+console.log(represent(s2)); // -> "Hello !" (because 'a' not provided)
+
+
+// enums (set of named constants) 👉 Used to define a set of named constants (instead of magic numbers or strings).
+enum grade {
+    u,  // default value = 0
+    d,  // = 1
+    c,  // = 2
+    b,  // = 3
+    a   // = 4
+}
+console.log(grade); // {0: 'u', 1: 'd', 2: 'c', 3: 'b', 4: 'a', u: 0, d: 1, c: 2, b: 3, a: 4}
+
+enum grade1 {
+    u = 1,  // value = 1 next = current + 1
+    d,  // = 2
+    c,  // = 3
+    b,  // = 4
+    a   // = 5
+}
+console.log(grade); // {0: 'u', 1: 'd', 2: 'c', 3: 'b', 4: 'a', u: 0, d: 1, c: 2, b: 3, a: 4}
+
