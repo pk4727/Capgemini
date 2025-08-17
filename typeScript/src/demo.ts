@@ -119,6 +119,28 @@ let s: student = {
 // }
 
 
+// Type Aliases => A "type alias" gives a custom name to a type (can be primitive, union, object, etc.)
+
+type stringNumber = string | number       // alias for "string or number"
+type stringNumberArray = (string | number)[]   // alias for array of (string | number)
+
+// alias for object type
+type guitarist = {
+    name?: string,          // optional property (may or may not be present)
+    active: boolean,        // required boolean
+    albums: stringNumberArray // array of string or number
+}
+
+type userId = stringNumber  // alias for user id (can be string or number)
+// interface x = stringNumber // ❌ Not supported (interfaces can only describe object/class shapes, not unions or primitives)
+
+
+// Literal Types => A variable can only hold EXACTLY the values you specify (not any string/number)
+let userName: 'Pk' | 'Dk' | 'Kk'  // userName can only be "Pk", "Dk", or "Kk"
+userName = 'Kk'  // ✅ valid
+// userName = 'Rk' // ❌ error (not allowed)
+
+
 // interface (similar to type but interfaces are extendable and better for OOP-style code.) 
 // 👉 Used to define the shape of objects or classes. It’s like a contract that objects must follow.
 

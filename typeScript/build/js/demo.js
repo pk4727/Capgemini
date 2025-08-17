@@ -78,6 +78,10 @@ let s = {
     album: ['abc'],
     isSingle: true
 };
+// interface x = stringNumber // ❌ Not supported (interfaces can only describe object/class shapes, not unions or primitives)
+// Literal Types => A variable can only hold EXACTLY the values you specify (not any string/number)
+let userName; // userName can only be "Pk", "Dk", or "Kk"
+userName = 'Kk'; // ✅ valid
 // object following the contract
 let s2 = {
     name: "Ashish",
