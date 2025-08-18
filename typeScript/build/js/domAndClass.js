@@ -152,9 +152,7 @@ console.log(MyBands.data); // Output: [ 'Neil Young', 'Led Zep' ]
 // ✅ Add new band using spread operator → Works
 MyBands.data = [...MyBands.data, 'ZZ Top'];
 console.log(MyBands.data); // Output: [ 'Neil Young', 'Led Zep', 'ZZ Top' ]
-
+export {};
 // ❌ Assign invalid array (number included) → Throws error
 // MyBands.data = ['Van Halen', 5150]; // Error: Param is not an array of strings
-
-export {};
 //# sourceMappingURL=domAndClass.js.map
