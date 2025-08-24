@@ -751,3 +751,137 @@ console.log(deepSort(data, "age"));
 
 */
 
+
+/*
+// --------------------------------------------------------
+📘 JavaScript Strings – Quick Recap
+
+
+// 🔹 Core
+length                → Number of characters
+charAt(index)         → Get character
+at(index)             → Get character (supports negative)
+
+// 🔹 Searching
+includes(substr)      → true / false
+indexOf(substr)       → First index
+lastIndexOf(substr)   → Last index
+startsWith(substr)    → true if begins with
+endsWith(substr)      → true if ends with
+search(regex)         → Index via RegExp
+match(regex)          → Array of matches
+matchAll(regex)       → Iterator of matches
+
+// 🔹 Extracting
+slice(start, end)     → Substring (preferred)
+substring(start, end) → Similar to slice (no negatives)
+substr(start, len)    → Legacy (use slice)
+
+// 🔹 Modifying
+replace(find, repl)   → Replace first match
+replaceAll(find, repl)→ Replace all matches
+trim(), trimStart(), trimEnd()
+toUpperCase(), toLowerCase()
+repeat(n)             → Repeat string
+
+// 🔹 Splitting & Joining
+split(separator)      → String → Array
+arr.join(separator)   → Array → String
+
+// 🔹 Character Codes
+charCodeAt(index)     → UTF-16 code
+codePointAt(index)    → Unicode code
+
+// 🔹 Advanced
+padStart(len, char)   → Left pad
+padEnd(len, char)     → Right pad
+
+----------------------------------------------------------------
+📘 JavaScript Arrays – Quick Recap
+
+
+// 🔹 Core
+length                → Number of elements
+arr[index]            → Access element
+arr[index] = value    → Update element
+
+// 🔹 Adding / Removing
+push(item)            → Add to end
+pop()                 → Remove last
+unshift(item)         → Add to start
+shift()               → Remove first
+splice(start, del, ...items) → Add / remove / replace
+slice(start, end)     → Copy portion (non-destructive)
+concat(arr2)          → Merge arrays
+[...arr, ...arr2]     → Spread (alternative concat)
+
+// 🔹 Searching & Checking
+includes(item)        → true / false
+indexOf(item)         → First index
+lastIndexOf(item)     → Last index
+at(index)             → Get element (supports negative)
+find(fn)              → First element matching condition
+findIndex(fn)         → Index of first match
+some(fn)              → true if any match
+every(fn)             → true if all match
+
+// 🔹 Iteration & Transformation
+forEach(fn)           → Loop (no return)
+map(fn)               → Transform → new array
+filter(fn)            → Keep elements
+reduce(fn, init)      → Accumulate (sum, etc.)
+reduceRight(fn, init) → Accumulate from right
+keys()                → Iterator of indexes
+values()              → Iterator of values
+entries()             → Iterator of [index, value]
+
+// 🔹 Sorting & Reversing
+sort(compareFn)       → Sort in place (default: lexicographic)
+reverse()             → Reverse in place
+toSorted(compareFn)   → Immutable sort (ES2023)
+toReversed()          → Immutable reverse (ES2023)
+
+// 🔹 Flattening & Filling
+flat(depth)           → Flatten nested arrays
+flatMap(fn)           → Map + Flatten
+fill(value, start, end) → Fill with static value
+
+// 🔹 Conversion
+join(sep)             → Array → String
+toString()            → Comma-separated string
+Array.from(iterable)  → Convert iterable/string → Array
+Array.isArray(val)    → Check if array
+Array.of(...items)    → Create array from args
+
+// 🔹 Copying & Cloning
+copyWithin(target, start, end) → Copy within itself
+structuredClone(arr)           → Deep copy (modern)
+[...arr] / arr.slice()         → Shallow copy
+with(index, value)             → Return new array w/ replaced element (ES2023)
+
+-----------------------------------------------------------------
+📘 JavaScript Objects – Quick Recap
+
+
+// 🔹 Core
+obj.prop / obj["prop"]   → Access
+obj.prop = value         → Add / Update
+delete obj.prop          → Remove
+prop in obj              → Check existence
+
+// 🔹 Checking
+Object.hasOwn(obj, key)  → Own property? (modern)
+obj.hasOwnProperty(key)  → Own property? (old)
+
+// 🔹 Conversion
+Object.keys(obj)         → Array of keys
+Object.values(obj)       → Array of values
+Object.entries(obj)      → Array of [key, value]
+Object.fromEntries(arr)  → Array → Object
+
+// 🔹 Sorting (indirect)
+Object.keys(obj).sort()                → Sort keys
+Object.values(obj).sort()              → Sort values
+Object.entries(obj).sort(([,a],[,b]))  → Sort by value
+
+*/
