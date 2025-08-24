@@ -72,7 +72,7 @@ for (let key in dict) {
 }
 
 // for each loop
-arr.forEach(function(value,index){
+arr.forEach(function (value, index) {
     console.log(index + " " + value)
 });
 
@@ -210,7 +210,7 @@ function greet(name) {
 console.log(greet("Pk")); // calling the function
 
 // arrow function
-const add = (a, b) => {a + b}; // arrow function
+const add = (a, b) => { a + b }; // arrow function
 console.log("Sum using arrow function: " + add(5, 10));
 
 function run(who) {
@@ -221,9 +221,8 @@ run(function () {
     console.log("function as parameter or passing a function inside another function")
 })
 
-setTimeout(function(){console.log("Timeout")},3000);
+setTimeout(function () { console.log("Timeout") }, 3000);
 console.log("next to time out");
 
-setInterval(function(){console.log("interval")},3000);
+setInterval(function () { console.log("interval") }, 3000);
 console.log("next to interval")
-
