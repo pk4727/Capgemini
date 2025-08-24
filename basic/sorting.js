@@ -50,14 +50,313 @@ console.log(files); // ["file1.txt", "file3.txt", "file20.txt", "file100.txt"]
 */
 
 
-// important Core Properties of array
+// 🔹 Most Frequently Used (💯 must-know) Properties of array
+
+// push, pop, shift, unshift, splice, slice, concat
+// map, filter, reduce, forEach
+// find, findIndex, includes
+// sort, reverse
+// flat, flatMap
+// join, Array.isArray, spread [...arr]
+// at, toSorted, toReversed (modern must-know)
 
 
 /*
- 
-let arr = []
 
-*/
+let arr = ["Alice", "Bob", "Charlie"];
+
+// 🔹 1. arr.length                                                 → Number of elements
+console.log(arr.length);  // 3   (because there are 3 elements)
+
+
+// 🔹 2. arr[index]                                                 → Access element by index (Arrays are zero-based → first element is at index 0.)
+console.log(arr[0]); // "Alice"
+console.log(arr[1]); // "Bob"
+console.log(arr[5]); // undefined
+
+
+// 🔹 3. arr[index] = value                                         → Update element into array
+arr[1] = "David";   // Change "Bob" → "David"
+console.log(arr); // ["Alice", "David", "Charlie"]
+
+// You can also add a new element at an unused index
+arr[3] = "Eve";
+console.log(arr); // ["Alice", "David", "Charlie", "Eve"]
+
+
+// ------------------------------- 2. Adding / Removing Elements --------------------------------
+
+
+// 🔹 1. push(item)                                                 → Add to end
+arr.push("David");
+console.log(arr); // ["Alice", "Bob", "Charlie", "David"]
+
+
+// 🔹 2. pop()                                                      → Remove last element
+arr.pop();
+console.log(arr); // ["Alice", "Bob", "Charlie"]   (removed "David")
+
+
+// 🔹 3. unshift(item)                                              → Add to beginning
+arr.unshift("Zara");
+console.log(arr); // ["Zara", "Alice", "Bob", "Charlie"]
+
+
+// 🔹 4. shift()                                                    → Remove first element
+arr.shift();
+console.log(arr); // ["Alice", "Bob", "Charlie"]   (removed "Zara")
+
+
+// 🔹 5. splice(startindex, deleteCount, ...itemsReplaceTo)         👉 Add / Remove / Replace at a specific index.
+
+// Remove elements:
+arr.splice(1, 1); // Remove 1 element at index 1 ("Bob")
+console.log(arr); // ["Alice", "Charlie"]
+
+
+// Add elements:
+arr.splice(1, 0, "Bob", "David");
+console.log(arr); // ["Alice", "Bob", "David", "Charlie"]
+
+
+// Replace elements:
+arr.splice(2, 1, "Eve");
+console.log(arr); // ["Alice", "Bob", "Eve", "Charlie"]
+
+
+// 🔹 6. slice(start, end) -> (start inclusive, end exclusive)      → Copy portion (non-destructive)
+
+let sliced = arr.slice(1, 3);
+console.log(sliced); // ["Bob", "Eve"]
+console.log(arr); // ["Alice", "Bob", "Eve", "Charlie"] (original unchanged)
+
+
+// 🔹 7. concat(arr2)                                               → Merge arrays
+let arr2 = ["abc", "abcd", "dabc", "mkdfsabc"]
+let merged = arr.concat(arr2);
+console.log(merged); // ["Alice", "Bob", "Eve", "Charlie", "X", "Y"]
+
+
+// 🔹 8. Spread syntax [...arr, ...arr2]                            → Alternative to concat
+let merged2 = [...arr, ...arr2];
+console.log(merged2); // ["Alice", "Bob", "Eve", "Charlie", "X", "Y"]
+
+
+// ------------------------------------------ 3. Searching & Checking---------------------------------
+
+
+arr = ["Alice", "Bob", "Charlie", "Bob", "David"];
+
+// 🔹 1. includes(item)                                             → Check if element exists
+console.log(arr.includes("Bob"));    // true
+console.log(arr.includes("Eve"));    // false
+
+
+// 🔹 2. indexOf(item)                                              → First index of element
+console.log(arr.indexOf("Bob"));     // 1  (first "Bob" is at index 1)
+console.log(arr.indexOf("Eve"));     // -1 (not found)
+
+
+// 🔹 3. lastIndexOf(item)                                          → Last index of element
+console.log(arr.lastIndexOf("Bob")); // 3  (last "Bob" is at index 3)
+
+
+// 🔹 4. at(index)                                                  → Get element by index (supports negative)
+console.log(arr.at(2));   // 30
+console.log(arr.at(-1));  // 50 (last element)
+
+
+// 🔹 5. find(callback)                                             → First element matching condition
+let result = arr.find(name => name.length > 5);
+console.log(result); // "Charlie" (first element with length > 5)
+
+
+// 🔹 6. findIndex(callback)                                        → Index of first match
+let index = arr.findIndex(name => name.startsWith("C"));
+console.log(index); // 2  ("Charlie" is at index 2)
+
+
+// 🔹 6. some(callback)                                             → Returns true if any element matches
+console.log(arr.some(name => name.startsWith("A"))); // true (Alice)
+console.log(arr.some(name => name === "Eve"));       // false
+
+
+// 🔹 8. every(callback)                                            → Returns true if all elements match
+console.log(arr.every(name => typeof name === "string")); // true
+console.log(arr.every(name => name.length > 3));          // false (Bob fails)
+console.log(arr.every(name => name.includes("abc")));     // true all string contains "abc"
+
+
+// ------------------------------------------- 4. Iteration ---------------------------------
+
+
+let numbers = [30, 5, 100, 20]
+//🔹 1. forEach(callback)                                           → Loop through array (no return)
+numbers.forEach((num, index) => {
+    console.log(`Index ${index}: ${num}`);
+});
+// Index 0: 10
+// Index 1: 20
+// Index 2: 30
+// Index 3: 40
+
+
+// 🔹 2. map(callback) → returns new array                          → Transform each element
+// Original array remains unchanged.
+
+let doubled = numbers.map(num => num * 2);
+console.log(doubled); // [20, 40, 60, 80]
+
+
+// 🔹 3. filter(callback)                                           → Keep elements that match condition
+// Creates a new array with only matching elements.
+let above20 = numbers.filter(num => num > 20);
+console.log(above20); // [30, 40]
+
+
+// 🔹 4. reduce(callback, initialValue)                             → Accumulate values from left
+// Used for sums, products, averages, flattening arrays, etc.
+let sum = numbers.reduce( ((acc, num) => acc + num), 0);
+console.log(sum); // 100
+
+
+// 🔹 5. reduceRight(callback, initialValue)                        → Like reduce but from right
+let concatRight = arr2.reduceRight((acc, val) => acc + val + " ", "");
+console.log(concatRight); // "cba"
+
+
+// 🔹 6. keys() → Iterator of indexes
+for (let key of arr.keys()) {
+  console.log(key);  
+}
+// 0, 1, 2, 3, 4
+
+
+// 🔹 7. values() → Iterator of values
+for (let value of arr.values()) {
+  console.log(value);
+}
+// 10, 20, 30, 40, 50
+
+
+// 🔹 8. entries() → Iterator of [index, value]
+for (let [i, v] of arr.entries()) {
+  console.log(i, v);
+}
+// 0 10
+// 1 20
+// 2 30
+// 3 40
+// 4 50
+
+
+// ------------------------------------ 6. Flattening & Filling --------------------------------
+
+
+let nested = [1, [2, [3, [4]]]];
+let arr3 = [1, 2, 3, 4, 5];
+
+// 🔹 1. flat(depth) -> Default depth = 1                           → Flatten nested arrays
+console.log(nested.flat());     
+// [1, 2, [3, [4]]]   (flattened 1 level)
+
+console.log(nested.flat(2));    
+// [1, 2, 3, [4]]    (flattened 2 levels)
+
+console.log(nested.flat(Infinity)); 
+// [1, 2, 3, 4]      (fully flattened)
+
+
+// 🔹 2. flatMap(callback)                                         → Map + Flatten in one step
+// Runs map() first, then flattens one level deep.
+let words = ["hello", "world"];
+result = words.flatMap(word => word.split("")); 
+console.log(result); // ['h','e','l','l','o','w','o','r','l','d']
+
+// Another example: duplicating numbers into arrays.
+let expanded = arr3.flatMap(n => [n, n * 2]);
+console.log(expanded); // [1, 2, 2, 4, 3, 6, 4, 8, 5, 10]
+
+
+// 🔹 3. fill(value, start, end)                                   → Fill with static value
+// mutate the original arr3 (start: inclusive, end: exclusive)
+console.log(arr3.fill(0));       // [0, 0, 0, 0, 0] (all replaced with 0)
+console.log(arr3.fill(9, 1, 3)); // [1, 9, 9, 4, 5] (filled 9 from index 1 → 3)
+
+
+// -------------------------------- 7. Conversion & Joining -------------------------
+
+
+// 🔹 1. join(separator)                                            → Convert array to string
+// Joins elements with a custom separator (default = ,).
+
+console.log(arr.join()); // "Alice,Bob,Charlie"
+console.log(arr.join(" - ")); // "Alice - Bob - Charlie"
+
+
+// 🔹 2. toString()                                                 → Convert to comma-separated string
+console.log(arr.toString()); // "Alice,Bob,Charlie"
+
+
+// 🔹 3. Array.from(iterable)                                       → Convert iterable/string into array
+console.log(Array.from("hello"));   // ['h','e','l','l','o']
+
+let set = new Set([1, 2, 3]);
+console.log(Array.from(set));   // [1, 2, 3]
+
+doubled = Array.from([1, 2, 3], x => x * 2);
+console.log(doubled); // [2, 4, 6]
+
+
+// 🔹 4. Array.isArray(value)                                       → Check if value is array
+console.log(Array.isArray(arr));        // true
+console.log(Array.isArray("hello"));    // false
+console.log(Array.isArray({}));         // false
+
+
+// 🔹 5. Array.of(...items)                                         → Create array from arguments
+console.log(new Array(5))       // [empty × 5] or
+console.log(Array(5));          // [ <5 empty items> ]  ❌ confusing
+console.log(Array.of(5));       // [5]
+console.log(Array.of(1, 2, 3)); // [1, 2, 3]
+
+
+// ------------------------------------- 8. Copying & Cloning -------------------------------------
+
+
+let arr = [10, 20, 30, 40, 50];
+
+// 🔹 1. copyWithin(target, start, end)                                -> Copies part of array inside itself.
+// target = where to paste,
+// start = from where to copy,
+// end = before which index to stop.
+console.log(arr.copyWithin(1, 3));    // [10, 40, 50, 40, 50]
+
+
+// 🔹 2. structuredClone(arr)                                       → Deep copy (modern) Copies arrays/objects deeply (not just references).
+let nested = [[1,2], [3,4]];
+
+let deepCopy = structuredClone(nested);
+deepCopy[0][0] = 99;
+
+console.log(nested);     // [[1,2], [3,4]]
+console.log(deepCopy);   // [[99,2], [3,4]]
+
+
+// 🔹 3. with(index, value) Returns new array, doesn’t mutate.     → Immutable replace
+let newArr = arr.with(2, 999);
+console.log(newArr); // [10, 20, 999, 40, 50]
+console.log(arr);    // [10, 20, 30, 40, 50] (unchanged)
+
+
+// 🔹 4. [...arr] or arr.slice() not affect original                → Shallow copy
+let clone1 = [...arr];
+let clone2 = arr.slice();
+
+console.log(clone1); // [10, 20, 30, 40, 50]
+console.log(clone2); // [10, 20, 30, 40, 50]
+
+// */
 
 
 // array sorting
@@ -66,9 +365,30 @@ let arr = []
 /*
 
 let nums = [40, 100, 1, 5, 25, 10];
+
+// sort() → Sort array (default: lexicographic) sorts as strings, so "100" comes before "25".
+console.log(nums.sort()); // [1, 10, 100, 25, 5, 40]  ❌ not correct numerically but correct lexicographic
+
+
 nums.sort((a, b) => a - b); // Ascending order [1, 5, 10, 25, 40, 100]
 nums.sort((a, b) => b - a); // Descending order [100, 40, 25, 10, 5, 1]
 console.log(nums);
+
+
+// reverse() → Reverse array in place
+nums.reverse();
+console.log(nums); // [100, 40, 25, 10, 5, 1] to [1, 5, 10, 25, 40, 100]
+
+
+// toSorted(compareFn) (ES2023) → Immutable sort -> Returns a new sorted array without modifying the original.
+console.log(sorted); //  [1, 5, 10, 25, 40, 100]
+console.log(nums);   //  [1, 5, 10, 25, 40, 100] (unchanged ✅)
+
+
+// toReversed() (ES2023) → Immutable reverse -> Returns a new reversed array without modifying the original.
+let reversed = nums.toReversed();
+console.log(reversed); // [100, 40, 25, 10, 5, 1]
+console.log(nums);     //  [1, 5, 10, 25, 40, 100] (unchanged ✅)
 
 
 nums.sort(() => Math.random() - 0.5); // Shuffle randomly
@@ -166,7 +486,7 @@ console.log(Object.entries(data));
 //        [
 //          ["group1", [ { name: "Alice", age: 26 }, { name: "Bob", age: 20 } ]],
 //          ["group2", [ { name: "Charlie", age: 30 }, { name: "David", age: 22 } ]]
-//        ] 
+//        ]
 
 
 // Object.fromEntries(arr) → Convert [key, value] pairs back into an object.
@@ -181,11 +501,11 @@ console.log(newObj);
 */
 
 
-// object sorting : 
+
+// object sorting :
 // In JavaScript, objects are not directly sortable because they are unordered collections.
 // To sort your obj by age, you first need to convert it into an array (e.g., using Object.entries),
 // sort it, and (optionally) convert it back to an object.
-
 
 /*
 
