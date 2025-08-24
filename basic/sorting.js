@@ -10,15 +10,113 @@
 
 
 
-// important Core Properties of string
-
+// 🔹 Most Frequently Used (💯 must-know) Properties of string
+// Core      → length, charAt
+// Searching → includes, indexOf, lastIndexOf, startsWith, endsWith, search, match.
+// Extracting → slice, substring, substr.
+// Modifying → replace, replaceAll, trim, repeat, toUpperCase, toLowerCase.
+// Splitting → split + join.
+// Chars     → charCodeAt, codePointAt.
+// Advanced  → padStart, padEnd
 
 /*
-let str = "Pradhuman"
+let str = " Hello, World! JavaScript is awesome. ";
+        // 01234567890123456789012345678901234567
+
+// str.length → Number of characters.
+console.log(str.length); // 38
+
+// Access character by index:
+console.log(str[1]);   // "H" (space)
+console.log(str.charAt(1)); // "H"
+
+// at(index) → Get char at index (supports negative)
+console.log(str.at(-3)); // "e"
+
+// ---------------------------------------- Searching & Checking ------------------------
+
+// includes(substring) → Check if exists
+console.log(str.includes("World")); // true
+
+// startsWith(substring) / endsWith(substring)
+console.log(str.startsWith(" Hello")); // true
+console.log(str.endsWith("."));        // true
+
+
+// indexOf(substring) → First occurrence
+console.log(str.indexOf("JavaScript")); // 15
+
+// lastIndexOf(substring) → Last occurrence
+console.log(str.lastIndexOf("o")); // 33
+
+
+// search(regex) → Find index using RegExp
+console.log(str.search(/World/)); // 8
+
+// match(regex) → Return matches
+console.log(str.match(/\w+/g));
+// ["Hello", "World", "JavaScript", "is", "awesome"]
+
+// matchAll(regex) → Iterator of all matches
+for (let m of str.matchAll(/o/g)) {
+    console.log(m.index);
+}                               // 5, 9, 33
+
+
+// slice(start, end) / substring(start, end) / substr(start, length)
+console.log(str.slice(1, 6));       // "Hello"
+console.log(str.substring(1, 6));   // "Hello"
+console.log(str.substr(1, 5));      // "Hello"
+
+
+// charCodeAt(index) → UTF-16 code
+console.log("ABC".charCodeAt(0));   // 65
+
+// codePointAt(index) → Unicode code point
+console.log("😀".codePointAt(0));   // 128512
+
+
+// ----------------------------------- Modifying & Transforming --------------------------------------
+
+
+// toUpperCase() / toLowerCase()
+console.log(str.toUpperCase());         // " HELLO, WORLD! JAVASCRIPT IS AWESOME. "
+console.log(str.toLocaleLowerCase())    // " hello, world! javascript is awesome. "
+
+
+// trim() / trimStart() / trimEnd()
+console.log(str.trimStart())    // "Hello, World! JavaScript is awesome. "
+console.log(str.trimEnd())      // " Hello, World! JavaScript is awesome."
+console.log(str.trim());        // "Hello, World! JavaScript is awesome."
+
+
+// repeat(n)
+console.log("Hi! ".repeat(3)); // "Hi! Hi! Hi!"
+
+
+// replace(kiya, kis-sai) / replaceAll(replaceWord, replaceBy)
+console.log(str.replace("World", "Universe"));  // " Hello, Universe! JavaScript is awesome. "
+console.log(str.replaceAll("o", "0"));          // " Hell0, W0rld! JavaScript is awes0me. "
+
+
+// split(separator) / join(separator)
+console.log(str.split(" "));            // ["", "Hello,", "World!", "JavaScript", "is", "awesome.", ""]
+console.log(str.split(" ").join("-"));  // "-Hello,-World!-JavaScript-is-awesome.-"
+
+
+// Strings are iterable
+for (let ch of "Hello !") { console.log(ch); } // 'H','e','l', 'l', 'o', ' ', '!'
+
+
+// padStart(length, char) / padEnd(length, char)
+console.log("5".padStart(3, "0")); // "005"
+console.log("5".padEnd(3, "*"));   // "5**"
+
 */
 
-// string sorting
 
+
+// string sorting
 
 /*
 
@@ -50,16 +148,16 @@ console.log(files); // ["file1.txt", "file3.txt", "file20.txt", "file100.txt"]
 */
 
 
+
 // 🔹 Most Frequently Used (💯 must-know) Properties of array
-
-// push, pop, shift, unshift, splice, slice, concat
-// map, filter, reduce, forEach
-// find, findIndex, includes
-// sort, reverse
-// flat, flatMap
-// join, Array.isArray, spread [...arr]
-// at, toSorted, toReversed (modern must-know)
-
+// Core -> length, [index], [index] = value
+// Adding / Removing -> push, pop, unshift, shift, splice, slice, concat, [...spread]
+// Searching -> includes, indexOf, lastIndexOf, at, find, findIndex, some, every
+// Iteration -> forEach, map, filter, reduce, reduceRight, keys, values, entries
+// Sorting -> sort, reverse, toSorted, toReversed
+// Flattening / Filling -> flat, flatMap, fill
+// Conversion -> join, toString, Array.from, Array.isArray, Array.of
+// Copying / Cloning -> copyWithin, structuredClone, with, slice, [...spread]
 
 /*
 
@@ -227,7 +325,7 @@ console.log(concatRight); // "cba"
 
 // 🔹 6. keys() → Iterator of indexes
 for (let key of arr.keys()) {
-  console.log(key);  
+  console.log(key);
 }
 // 0, 1, 2, 3, 4
 
@@ -257,20 +355,20 @@ let nested = [1, [2, [3, [4]]]];
 let arr3 = [1, 2, 3, 4, 5];
 
 // 🔹 1. flat(depth) -> Default depth = 1                           → Flatten nested arrays
-console.log(nested.flat());     
+console.log(nested.flat());
 // [1, 2, [3, [4]]]   (flattened 1 level)
 
-console.log(nested.flat(2));    
+console.log(nested.flat(2));
 // [1, 2, 3, [4]]    (flattened 2 levels)
 
-console.log(nested.flat(Infinity)); 
+console.log(nested.flat(Infinity));
 // [1, 2, 3, 4]      (fully flattened)
 
 
 // 🔹 2. flatMap(callback)                                         → Map + Flatten in one step
 // Runs map() first, then flattens one level deep.
 let words = ["hello", "world"];
-result = words.flatMap(word => word.split("")); 
+result = words.flatMap(word => word.split(""));
 console.log(result); // ['h','e','l','l','o','w','o','r','l','d']
 
 // Another example: duplicating numbers into arrays.
@@ -359,8 +457,8 @@ console.log(clone2); // [10, 20, 30, 40, 50]
 // */
 
 
-// array sorting
 
+// array sorting
 
 /*
 
@@ -428,8 +526,8 @@ console.log(people);
 */
 
 
-// important Core Properties of Objects
 
+// 🔹 Most Frequently Used (💯 must-know) Properties of object
 
 /*
 
