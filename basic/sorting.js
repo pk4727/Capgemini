@@ -10,10 +10,17 @@
 
 
 
-// string 
+// important Core Properties of string
 
 
-// /*
+/*
+let str = "Pradhuman"
+*/
+
+// string sorting
+
+
+/*
 
 let fruits = ["Bob", "alice", "charlie", "David"]
 fruits = fruits.sort();
@@ -40,13 +47,23 @@ let files = ["file20.txt", "file3.txt", "file100.txt", "file1.txt"];
 files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true })); // Use localeCompare with { numeric: true }
 console.log(files); // ["file1.txt", "file3.txt", "file20.txt", "file100.txt"]
 
-// */
+*/
 
 
-// array 
+// important Core Properties of array
 
 
-// /*
+/*
+ 
+let arr = []
+
+*/
+
+
+// array sorting
+
+
+/*
 
 let nums = [40, 100, 1, 5, 25, 10];
 nums.sort((a, b) => a - b); // Ascending order [1, 5, 10, 25, 40, 100]
@@ -86,16 +103,91 @@ people.sort((a, b) => {
 });
 console.log(people);
 
-// */
 
 
-// object : 
+*/
+
+
+// important Core Properties of Objects
+
+
+/*
+
+// obj.prop / obj["prop"] → Access a property.
+console.log(data.group1);        // [{ name: "Alice", age: 25 }, { name: "Bob", age: 20 }]
+console.log(data["group2"]);     // [{ name: "Charlie", age: 30 }, { name: "David", age: 22 }]
+console.log(data.group1[0]);        // { name: "Alice", age: 25 }
+console.log(data["group2"][0].age);     // 30 of charlie
+
+
+// obj.prop = value → Set or update a property.
+data.group3 = [{ name: "Eve", age: 28 }]; // set
+console.log(data); // [ { name: "Eve", age: 28 } ]
+
+data.group1[0].age = 26;   // Update Alice's age
+console.log(data.group1[0]); // { name: "Alice", age: 26 }
+
+
+// delete obj.prop → Remove a property.
+delete data.group3;
+console.log(data);
+
+
+// prop in obj → Check if property exists.
+console.log("group1" in data); // true
+console.log("group3" in data); // false
+
+
+// Object.hasOwn(obj, prop) (ES2022) → Check if property is an own property (better than hasOwnProperty).
+console.log(Object.hasOwn(data, "group1")); // true
+console.log(Object.hasOwn(data, "age")); // false
+console.log(Object.hasOwn(data.group1[0], "age")); // false (inherited from prototype)
+
+
+// obj.hasOwnProperty(prop) → Old way to check if the property is on the object itself (not inherited).
+console.log(data.hasOwnProperty("group2")); // true
+console.log(data.group1[0].hasOwnProperty("age")); // false
+
+
+// Object.keys(obj) → Returns an array of keys.
+console.log(Object.keys(data)); // ["group1", "group2"]
+
+
+// Object.values(obj) → Returns an array of values.
+console.log(Object.values(data)); //  [Array(2), Array(2)]
+//        [
+//          [ { name: "Alice", age: 26 }, { name: "Bob", age: 20 } ],
+//          [ { name: "Charlie", age: 30 }, { name: "David", age: 22 } ]
+//        ]
+
+
+// Object.entries(obj) → Returns an array of [key, value] pairs.
+console.log(Object.entries(data));
+//        [
+//          ["group1", [ { name: "Alice", age: 26 }, { name: "Bob", age: 20 } ]],
+//          ["group2", [ { name: "Charlie", age: 30 }, { name: "David", age: 22 } ]]
+//        ] 
+
+
+// Object.fromEntries(arr) → Convert [key, value] pairs back into an object.
+let entries = Object.entries(data);
+let newObj = Object.fromEntries(entries);
+console.log(newObj);
+//          {
+//            group1: [ { name: "Alice", age: 26 }, { name: "Bob", age: 20 } ],
+//            group2: [ { name: "Charlie", age: 30 }, { name: "David", age: 22 } ]
+//          }
+
+*/
+
+
+// object sorting : 
 // In JavaScript, objects are not directly sortable because they are unordered collections.
 // To sort your obj by age, you first need to convert it into an array (e.g., using Object.entries),
 // sort it, and (optionally) convert it back to an object.
 
 
-// /*
+/*
 
 let obj = {
     a: { name: "Alice", age: 25 },
@@ -239,78 +331,5 @@ console.log(deepSort(data, "age"));
 //             Same → [David (22), Charlie (30)]
 //         Recombine with Object.fromEntries:
 
-// */
-
-
-// Core Properties of Objects
-
-
-// /*
-
-// obj.prop / obj["prop"] → Access a property.
-console.log(data.group1);        // [{ name: "Alice", age: 25 }, { name: "Bob", age: 20 }]
-console.log(data["group2"]);     // [{ name: "Charlie", age: 30 }, { name: "David", age: 22 }]
-console.log(data.group1[0]);        // { name: "Alice", age: 25 }
-console.log(data["group2"][0].age);     // 30 of charlie
-
-
-// obj.prop = value → Set or update a property.
-data.group3 = [{ name: "Eve", age: 28 }]; // set
-console.log(data); // [ { name: "Eve", age: 28 } ]
-
-data.group1[0].age = 26;   // Update Alice's age
-console.log(data.group1[0]); // { name: "Alice", age: 26 }
-
-
-// delete obj.prop → Remove a property.
-delete data.group3;
-console.log(data);
-
-
-// prop in obj → Check if property exists.
-console.log("group1" in data); // true
-console.log("group3" in data); // false
-
-
-// Object.hasOwn(obj, prop) (ES2022) → Check if property is an own property (better than hasOwnProperty).
-console.log(Object.hasOwn(data, "group1")); // true
-console.log(Object.hasOwn(data, "age")); // false
-console.log(Object.hasOwn(data.group1[0], "age")); // false (inherited from prototype)
-
-
-// obj.hasOwnProperty(prop) → Old way to check if the property is on the object itself (not inherited).
-console.log(data.hasOwnProperty("group2")); // true
-console.log(data.group1[0].hasOwnProperty("age")); // false
-
-
-// Object.keys(obj) → Returns an array of keys.
-console.log(Object.keys(data)); // ["group1", "group2"]
-
-
-// Object.values(obj) → Returns an array of values.
-console.log(Object.values(data)); //  [Array(2), Array(2)]
-//        [
-//          [ { name: "Alice", age: 26 }, { name: "Bob", age: 20 } ],
-//          [ { name: "Charlie", age: 30 }, { name: "David", age: 22 } ]
-//        ]
-
-
-// Object.entries(obj) → Returns an array of [key, value] pairs.
-console.log(Object.entries(data));
-//        [
-//          ["group1", [ { name: "Alice", age: 26 }, { name: "Bob", age: 20 } ]],
-//          ["group2", [ { name: "Charlie", age: 30 }, { name: "David", age: 22 } ]]
-//        ] 
-
-
-// Object.fromEntries(arr) → Convert [key, value] pairs back into an object.
-let entries = Object.entries(data);
-let newObj = Object.fromEntries(entries);
-console.log(newObj);
-//          {
-//            group1: [ { name: "Alice", age: 26 }, { name: "Bob", age: 20 } ],
-//            group2: [ { name: "Charlie", age: 30 }, { name: "David", age: 22 } ]
-//          }
-
-// */
+*/
 
