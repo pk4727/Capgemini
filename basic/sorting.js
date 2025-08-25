@@ -887,9 +887,6 @@ Object.entries(obj).sort(([,a],[,b]))  → Sort by value
 */
 
 
-
-// longest comman prifix ( matchAll(regex) → Iterator of all matches )
-
 let strArray = ["interstellar", "internet", "internal", "into"]; // "int"
 strArray = ["apple", "banana", "carrot"]; // ""
 strArray = ["hello", "hello", "hello"]; // "hello"
