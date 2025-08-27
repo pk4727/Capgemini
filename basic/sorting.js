@@ -903,7 +903,7 @@ function longestCommonPrefix(strs) {
     }
     return prefix;
 }
-console.log(longestCommonPrefix(strArray)); //"trans"
+// console.log(longestCommonPrefix(strArray)); //"trans"
 
 
 function longestCommonPrefix2(strs) {
@@ -917,4 +917,4 @@ function longestCommonPrefix2(strs) {
     }
     return first.slice(0, i);
 }
-console.log(longestCommonPrefix2(strArray)); // "fl"
+// console.log(longestCommonPrefix2(strArray)); // "fl"
