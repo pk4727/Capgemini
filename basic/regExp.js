@@ -282,3 +282,7 @@ Regex: /a+?/
         But /a+?/ (lazy) matches just the first "a".
 */
 
+function countVoiels(str){
+    return str.match(/[aeiou]/gi).length
+}
+console.log(countVoiels('bdjgeysijogy'))
