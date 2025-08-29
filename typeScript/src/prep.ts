@@ -1,7 +1,7 @@
 function print(message: any): void {
     console.log(message);
 }
-
+/*
 interface person {
     name: string;
     age: number;
@@ -70,3 +70,91 @@ function reverseNumber(num: number) {
     return res
 }
 print(reverseNumber(1234))
+
+*/
+
+// suggestion
+let input: any[]
+/*
+// 1
+class Animal {
+    getType(): string {
+        return "Animal"
+    }
+}
+
+class Lion extends Animal {
+    getType(): string {
+        return "Lion"
+    }
+}
+
+input = ['Animal', 'Lion', 'Lion']
+input.forEach(obj => {
+    if (obj === 'Animal') {
+        print(new Animal().getType())
+    }
+    else if (obj === "Lion")
+        print(new Lion().getType())
+});
+
+
+// 2
+class Car {
+    static count: number = 0
+    constructor(curr: number) {
+        Car.count += curr
+    }
+
+    getCount(): number {
+        return Car.count
+    }
+}
+
+input = [1, 4, 2]
+input.forEach(cars => {
+    print(new Car(cars).getCount())
+
+})
+
+
+// 3
+class Library {
+    private books: number = 0
+
+    addBook(amount: number): void {
+        if (amount > 0) {
+            this.books += amount
+        }
+    }
+
+    borrowBook(amount: number): void {
+        if (this.books > amount) {
+            this.books -= amount
+        }
+    }
+
+    getBook(): number {
+        return this.books
+    }
+}
+
+input = ["add 10", "borrow 3", "books", "borrow 9", "books"]
+const obj = new Library()
+
+input.forEach(operation => {
+    const inp: string[] = operation.split(" ")
+    if (inp.length > 1) {
+        if (inp[0] === 'add') {
+            obj.addBook(Number(inp[1]))
+        } else if (inp[0] === 'borrow') {
+            obj.borrowBook(Number(inp[1]))
+        }
+    } else {
+        print(obj.getBook())
+    }
+});
+
+*/
+
+// 4
