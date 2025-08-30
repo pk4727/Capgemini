@@ -233,12 +233,11 @@ valid format is:
 123-456-7890        ->  /^\d{3}\-\d{3}\-\d{4}$/         or  /^\d{3}-\d{3}-\d{4}$/
 123.456.7890+       ->  /^\d{3}\.\d{3}\.\d{4}\+$/
 91 (123) 456-7890   ->  /^\d{2}\s\(\d{3}\)\s\d{3}\-\d{4}$/ or /^\d{2} \(\d{3}\) \d{3}-\d{4}$/
-
+*/
 function validPhone(arr) {
     let ans = { valid: 0, invalid: 0 }
     arr.forEach(number => {
         const len = number.length;
-        console.log(len)
         if (/^\d{10}$/.test(number)) {
             ans.valid++
         } else if (/^\(\d{3}\)\s\d{3}\-\d{4}$/.test(number)) {
@@ -256,7 +255,74 @@ function validPhone(arr) {
     return ans
 }
 let arr = ["1234567890", "123-456-7890", "123 456 7890", "(123) 456 7890", "911234567890"]
-console.log(validPhone(arr))
+// console.log(validPhone(arr))
 
+
+/*
+Explanation of Each parent
+    \b → word boundary, ensures we’re matching full words, not substrings.parent
+    (\w+) → capture group #1, matches one word (\w = letters, digits, underscore).parent
+    \s+ → matches one or more spaces between the words.parent
+    \1 → backreference → matches the same text captured in group #1.parent
+    \b → another word boundary at the end.
+
+    Flags:
+        g → global, find all matches instead of stopping at the first.
+        i → case-insensitive, so "Quickly Quickly" is caught even if capitalization
 */
+function consecutivelyRepeatedWords(str) {
+    let matches = [];
+
+    const regex = /\b(\w+)\s+\1\b/gi;
+    let duplicates = str.matchAll(regex)
+
+    duplicates.forEach(word => {             // word => [f + s, f, s]
+        first = word[0].split(" ")[0]
+        matches.push(first)
+    });
+
+    return matches.join(" ");
+}
+// console.log(consecutivelyRepeatedWords("Please please help me me Quickly quickly"));
+
+function consecutivelyRepeatedWords2(str) {
+    const words = str.split(/\s+/);   // split by spaces
+    const matches = [];
+    words.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\s+${word}\\b`, "i");  // build regex for "word word" (case insensitive)
+        const checkReg = new RegExp(`\\b${word}\\b`, 'i')           // build regex for "word" (case insensitive)
+
+        if (regex.test(str) && !checkReg.test(matches.join(" "))) {
+            matches.push(word);
+        }
+    });
+    return matches.join(" ");
+}
+// console.log(consecutivelyRepeatedWords2("Please please help me me Quickly quickly"));
+
+
+/*
+Explanation
+    . -> capture any char
+    (.) → capture any single character and remamber it .
+    \1 → backreference, means "the same character as captured before".
+    (.)\1 -> means one char followed by same char -> aa or bb or 11
+    {2,} → repeat at least 2 times.
+
+    So together (.)\1{2,} means:
+        one character followed by the same character at least two more times.
+*/
+function consecutivelyRepeatedLetter(str) {
+    const words = str.split(/\s+/);   // split by spaces
+    const matches = [];
+    words.forEach(word => {
+        // const regex = new RegExp(`(.)\\1{2,}`, "i");  // build regex for "www" (case insensitive)
+        // if (regex.test(word)) {
+        if (/(.)\1{2,}/i.test(word)) {
+            matches.push(word);
+        }
+    });
+    return matches.join(" ");
+}
+// console.log(consecutivelyRepeatedLetter("sooo excited fot this cooool event yesss absolutely"));
 
