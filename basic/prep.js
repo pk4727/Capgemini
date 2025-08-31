@@ -458,7 +458,7 @@ function isStrongPassword2(pass) {
 // =========================================================================================================
 
 
-
+/*
 function swap(arr, i, j) {
     arr[i] = arr[i] + arr[j];
     arr[j] = arr[i] - arr[j];
@@ -703,8 +703,205 @@ console.log(
     /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("00/08/2003"), // false
     /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("16/13/2003"), // false
     /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("10/12/20303") // false
-
 )
 
+*/
+
+// Rearrange an array such that all odd numbers appear before even numbers, while maintaining their original order.
+// Example: [4, 1, 3, 2, 7, 8] → [1, 3, 7, 4, 2, 8].
+function evenOdd(arr) {
+    const even = arr.filter(ele => ele % 2 === 0);
+    const odd = arr.filter(ele => ele % 2 === 1);
+    return [...odd, ...even]
+}
+console.log(evenOdd([4, 1, 3, 2, 7, 8]))
 
 
+
+// Given an array of numbers, replace each element with the sum of all elements to its right.
+// Example: [4, 2, 1] → [3, 1, 0].
+function rightSum(arr) {
+    let sum = 0;
+    for (let i = arr.length - 1; i >= 0; i--) {
+        const curr = arr[i]
+        arr[i] = sum
+        sum += curr
+    }
+    return arr
+}
+console.log(rightSum([4, 2, 1]))
+
+
+
+// Write a function that finds the second largest unique number in an array.
+// Example: [5, 2, 9, 1, 9, 7] → 7.
+function secondHighestUnique(arr) {
+    arr.sort((a, b) => b - a)
+    const unique = new Set(arr)
+    return [...unique][1]
+}
+console.log(secondHighestUnique([5, 2, 9, 1, 9, 7]))
+
+
+
+// Rotate an array in-place by k positions (without using .slice() or extra arrays).
+function rotateArrayKsteps(arr, k) {
+    for (let i = 0; i < k; i++) {
+        arr.unshift(arr.pop())
+    }
+    return arr
+}
+console.log(rotateArrayKsteps([5, 2, 9, 1, 9, 7], 3))
+console.log(rotateArrayKsteps([1, 2, 3, 4, 5], 2))
+
+
+
+// Given an array of 0s and 1s, find the longest consecutive sequence of 1s.
+// Example: [1, 1, 0, 1, 1, 1, 0, 1] → 3.
+function longestConsecutiveSequence(arr) {
+    // return arr.join("").match(/(1)\1+/g).sort((a, b) => b.length - a.length)[0]
+
+    const arrStr = arr.join("")
+    const repeted = arrStr.match(/(1)\1+/g)
+    repeted.sort((a, b) => b.length - a.length)
+    return [repeted[0], repeted[0].length]
+}
+console.log(longestConsecutiveSequence([1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1]))
+
+function maxOnes(arr) {
+    let max = 0;
+    let curr = 0;
+    for (let ele of arr) {
+        curr = ele === 1 ? curr + 1 : 0;
+        max = Math.max(max, curr)
+    }
+    return max
+}
+console.log(maxOnes([1, 1, 0, 1, 1, 1, 0, 1]));
+
+
+
+// Replace every nth character in a string with *. (Example: replace every 3rd character).
+// "abcdefghi" → "ab*de*gh*".
+function replaceNthChar(str, n) {
+    return str.split("").map((char, index) => index % n === n - 1 ? "*" : char).join("")
+}
+console.log(replaceNthChar("abcdefghi", 3))
+
+function replaceNthChar2(str, n) {
+    str = str.split("")
+    for (let i = n - 1; i < str.length; i += n) {
+        str[i] = "*"
+    }
+    return str.join("")
+}
+console.log(replaceNthChar2("abcdefghi", 3))
+
+
+
+// Find the longest word in a sentence.
+// "I am practicing JavaScript daily" → "JavaScript".
+function longestWord(str) {
+    return str.split(" ").sort((a, b) => b.length - a.length)[0]
+}
+console.log(longestWord("I am practicing JavaScript daily"))
+
+
+
+// Write a function that returns the frequency of each word in a sentence.
+// "this is is a test this" → {this:2, is:2, a:1, test:1}.
+function wordFrequency(str) {
+    str = str.split(" ");
+    let fre = {}
+    for (let i = 0; i < str.length; i++) {
+        const word = str[i]
+        fre[word] = (fre[word] | 0) + 1
+    }
+    return fre
+}
+console.log(wordFrequency("this is is a test this"))
+
+function charFrequency(str) {
+    let fre = {}
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charAt(i);
+        fre[char] = (fre[char] | 0) + 1
+    }
+    return [fre, str.length]
+}
+console.log(charFrequency("this is is a test this"))
+
+
+
+// Check if a string is a pangram (contains every letter of the English alphabet at least once).
+function isPangram(str) {
+    str = str.toLowerCase();
+    return [..."abcdefghijklmnopqrstuvwxyz"].every(ch => str.includes(ch));
+
+    let matches = str.match(/[a-z]/g); // only contain a to z char by matching globaly
+    const uniqueMatches = new Set(matches);
+    return uniqueMatches.size === 26;
+
+    let char = str.replace(/[^a-z]/g); // only contain a to z char by replacing " "
+    let unique = new Set(char)
+    return unique.size === 26;
+}
+console.log(isPangram("The quick brown fox jumps over the lazy dog")); // true
+
+function isPangram3(str) {
+    str = str.toLowerCase();
+    let freq = {};
+    for (let ch of str) {
+        if (ch >= 'a' && ch <= 'z') {
+            freq[ch] = true;
+        }
+    }
+    return Object.keys(freq).length === 26;
+}
+console.log(isPangram3("The quick brown fox jumps over the lazy dog")); // true
+
+
+// Remove all duplicate characters from a string.
+// "programmiinng" → "prograg".
+function removeDuplicateChar(str) {
+    const duplicate = str.match(/(.)\1+/g)
+    duplicate.forEach(char => {
+        const reg = new RegExp(`${char}`)
+        str = str.replace(reg, "")
+    });
+    return [duplicate, str]
+}
+console.log(removeDuplicateChar("programmiinng"))
+
+
+
+// Write a regex to validate an email address (must contain @, domain, and end with .com or .org).
+console.log(/^[\w.-]+@[a-zA-Z]+\.(com|org)$/.test("pra5d@gmail.org"))
+
+
+
+// Extract all the hashtags from a sentence.
+// "Learning #JavaScript and #Regex is fun" → ["#JavaScript", "#Regex"].
+str = "Learning #JavaScript and #Regex is fun"
+console.log(str.match(/(?<=#)\w+/g))
+
+
+
+// Validate a string as a strong password:
+// At least 8 characters and Contains uppercase, lowercase, digit, special char but No spaces
+console.log(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#%^&*]{8,}/.test("Pr1@PPPPPP"))
+
+
+
+// OOP / Classes (2 Qs)
+
+// Create a class BankAccount with properties accountNumber, balance. Add methods:
+// deposit(amount)
+// withdraw(amount) (check sufficient balance)
+// getBalance()
+
+// Create a class Playlist to store songs (title, artist). Add methods:
+// addSong(title, artist)
+// removeSong(title)
+// getAllSongs()
+// searchByArtist(artist)
