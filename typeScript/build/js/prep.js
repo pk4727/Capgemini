@@ -74,7 +74,7 @@ print(reverseNumber(1234))
 */
 // suggestion
 let input;
-export {};
+export { };
 /*
 // 1
 class Animal {

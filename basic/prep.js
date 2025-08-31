@@ -451,3 +451,260 @@ function isStrongPassword2(pass) {
 // console.log(isStrongPassword2("Passw0rd!"));    // true
 // console.log(isStrongPassword2("Pasw0rd!🙂"));   // true
 // console.log(isStrongPassword2("password123"));  // false
+
+
+
+
+// =========================================================================================================
+
+
+
+function swap(arr, i, j) {
+    arr[i] = arr[i] + arr[j];
+    arr[j] = arr[i] - arr[j];
+    arr[i] = arr[i] - arr[j];
+}
+
+// 1. Write a function to move all negative numbers to the left side of the array and positive numbers to the right side, in-place.
+// Example: [3, -2, -5, 7, 1, -8] → [-2, -5, -8, 7, 1, 3].
+
+function negativePositive(arr) {
+    const negative = arr.filter(num => num < 0);
+    const positive = arr.filter(num => num > 0);
+    return [...negative, ...positive]
+}
+console.log(negativePositive([3, -2, -5, 7, 1, -8]))
+
+function negativePositiveInplace(arr) {
+    let left = 0, right = arr.length - 1;
+    while (left < right) {
+        if (arr[left] < 0) {
+            left++;
+        } else if (arr[right] > 0) {
+            right--;
+        } else {
+            swap(arr, left, right);
+            left++;
+            right--;
+        }
+    }
+    return arr;
+}
+console.log(negativePositiveInplace([3, -2, -5, 7, 1, -8]));
+
+
+
+// Given an array, replace every second element with its square.
+// Example: [2, 3, 4, 5, 6] → [2, 9, 4, 25, 6].
+function replaceSecondSqure(arr) {
+    for (let i = 1; i < arr.length; i += 2) {
+        arr[i] = arr[i] ** 2
+    }
+    return arr;
+}
+console.log(replaceSecondSqure([2, 3, 4, 5, 6]))
+
+function replaceSecond(arr) {
+    return arr.map((val, i) => (i % 2 === 1 ? val * val : val));
+}
+console.log(replaceSecond([2, 3, 4, 5, 6]));
+
+
+
+// Write a function that checks if an array is sorted in ascending order. Return true or false.
+function isAscending(arr) {
+    return arr[0] < arr[1] ? true : false
+}
+console.log(isAscending([2, 3, 4, 5, 9]))
+
+
+
+// Remove all duplicates from an array without using Set().
+// Example: [1, 2, 3, 2, 4, 1, 5] → [1, 2, 3, 4, 5].
+function removeDuplicate(arr) {
+    let unique = []
+    arr.forEach(element => {
+        if (!unique.includes(element)) {
+            unique.push(element)
+        }
+    });
+    return unique
+}
+console.log(removeDuplicate([1, 2, 3, 2, 4, 1, 5]));
+
+function removeDuplicate(arr) {
+    return arr.reduce((unique, ele) => {
+        if (!unique.includes(ele)) {
+            unique.push(ele);
+        }
+        return unique;
+    }, []);
+}
+console.log(removeDuplicate([1, 2, 3, 2, 4, 1, 5]));
+
+
+
+// Given two arrays, return the common elements between them.
+// Example: [1, 2, 3, 4] and [3, 4, 5, 6] → [3, 4].
+function intersection(arr1, arr2) {
+    let common = []
+    arr1.forEach(element => {
+        if (arr2.includes(element)) {
+            common.push(element)
+        }
+    });
+    return common
+}
+console.log(intersection([1, 2, 3, 4], [3, 4, 5, 6]));
+
+function intersection(arr1, arr2) {
+    return arr1.filter(ele => arr2.includes(ele))
+}
+console.log(intersection([1, 2, 3, 4], [3, 4, 5, 6]));
+
+
+
+// Replace every 4th word in a string with "X".
+// Example: "I love to write code every day" → "I love to X code every day".
+let str = "I love to write code every day"
+function replaceFourthWordToX(str) {
+    str = str.split(" ")
+    for (let i = 3; i < str.length; i += 4) {
+        str[i] = "X"
+    }
+    return str.join(" ");
+}
+console.log(replaceFourthWordToX(str))
+
+function replaceFourthWordToX(str) {
+    return str.split(" ").map((word, index) => index % 4 === 3 ? "X" : word).join(" ");
+}
+console.log(replaceFourthWordToX(str))
+
+
+
+// Count the number of vowels in a given string.
+function voilsCount(str) {
+    console.log(str.match(/[aeiou]/gi).length)
+
+    let voil = 0
+    for (let i = 0; i < str.length; i++) {
+        if ("aeiouAEIOU".includes(str[i])) {
+            voil++
+        }
+    }
+    console.log(voil)
+}
+voilsCount(str)
+
+
+// Check if two strings are anagrams of each other.
+// Example: "listen" and "silent" → true.
+function isAnagram(str1, str2) {
+    let isAna = str1.split("").sort().join("") === str2.split("").sort().join("")
+    console.log(isAna)
+
+    isAna = str1.length === str2.length
+    for (let i = 0; i < str1.length; i++) {
+        if (!str2.includes(str1[i])) {
+            isAna = false
+        }
+    }
+    console.log(isAna)
+}
+isAnagram("listen", "silent")
+
+
+
+// Reverse the order of characters in each word, but keep the word order same.
+// Example: "I love JS" → "I evol SJ".
+function reverseCurrWord(str) {
+    let rev = ""
+    for (let i = str.length - 1; i >= 0; i--) {
+        rev += str[i]
+    }
+    return rev
+}
+
+function reverseWord(str) {
+    let wordArr = []
+    let curr = ""
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === ' ') {
+            wordArr.push(reverseCurrWord(curr))
+            curr = ""
+        } else {
+            curr += str[i]
+        }
+    }
+    wordArr.push(reverseCurrWord(curr))
+    console.log(wordArr.join(" "))
+
+    return str.split(" ").map(word => word.split("").reverse().join("")).join(" ");
+}
+console.log(reverseWord("I love JS"))
+
+
+
+// Replace all words with length greater than 4 with "****".
+// Example: "I enjoy coding in JavaScript" → "I **** **** in ****".
+str = "I enjoy coding in JavaScript"
+function replaceAllWord_LenGreater4(str) {
+    str = str.split(" ")
+    for (let i = 0; i < str.length; i++) {
+        if (str[i].length > 4) {
+            str[i] = "X"
+        }
+    }
+    return str.join(" ");
+}
+console.log(replaceAllWord_LenGreater4(str))
+
+function replaceAllWord_LenGreater4(str) {
+    return str.split(" ").map(word => word.length > 4 ? "****" : word).join(" ");
+}
+console.log(replaceAllWord_LenGreater4(str))
+
+
+
+// Write a regex to check if a string is a valid Indian mobile number (starts with 6–9, followed by 9 more digits).
+console.log(
+    /^[6-9]\d{9}/.test("9564895652"),    // start with 9 with more 9 digits
+    /^[6-9]\d{9}/.test("6564895652"),    // start with 6 with more 9 digits
+    /^[6-9]\d{9}/.test("8564895652"),    // not start with 7 with more 9 digits
+    /^[6-9]\d{9}/.test("94895652")       // start with 9 but not more 9 digits
+)
+
+
+
+// Detect consecutive duplicate letters in a string.
+// Example: "heelloo wooorld" → "ee oo ooo".
+console.log(
+    "heelloo".match(/(.)\1/g),              // ['ee', 'll', 'oo']
+    "heelloo".match(/(.)\1{1,}/g),          // ['ee', 'll', 'oo']
+    "heelloo wooorld".match(/(.)\1{1,}/g),  // ['ee', 'll', 'oo', 'ooo']
+    "heelloo wooorld".match(/(.)\1{2,}/g)   // ['ooo']
+)
+
+
+
+// Validate if a string is a valid date in format DD/MM/YYYY.
+console.log(
+    /\d{2}\/\d{2}\/\d{4}/.test("10/10/2003"), // true
+    /\d{2}\/\d{2}\/\d{4}/.test("0/10/2003"),  // false
+    /\d{2}\/\d{2}\/\d{4}/.test("10/1032003")  // false
+)
+
+console.log(
+    /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("01/01/2003"), // true
+    /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("31/10/2003"), // true
+    /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("18/12/2003"), // true
+    /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("32/10/2003"), // false
+    /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("00/08/2003"), // false
+    /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("16/13/2003"), // false
+    /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("10/12/20303") // false
+
+)
+
+
+
