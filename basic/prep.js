@@ -1,7 +1,7 @@
 function print(message) {
     console.log(message)
 }
-/*
+
 // 1. Reverse a string without using reverse()
 
 function reverseNumber(num) {
@@ -14,7 +14,7 @@ function reverseNumber(num) {
     }
     return res
 }
-print(reverseNumber(1234))
+// print(reverseNumber(1234))
 
 
 function isPalindrome(str) {
@@ -22,7 +22,7 @@ function isPalindrome(str) {
     let rev = reverseString(str)
     return str === rev;
 }
-print(isPalindrome("madam")); // true
+// print(isPalindrome("madam")); // true
 
 
 function reverseString(str) {
@@ -33,7 +33,7 @@ function reverseString(str) {
     });
     return rev
 }
-print(reverseString("pradhuman"))
+// print(reverseString("pradhuman"))
 
 
 function smallestLargest(arr) {
@@ -41,7 +41,7 @@ function smallestLargest(arr) {
     const smallest = Math.min(...arr)
     return { largest, smallest }
 }
-print(smallestLargest([1, 2, 6, 9, 0, 3, 4]))
+// print(smallestLargest([1, 2, 6, 9, 0, 3, 4]))
 
 
 function findDuplicate(arr) {
@@ -55,10 +55,10 @@ function findDuplicate(arr) {
             visited.push(ele)
         }
     });
-    print(arr.sort((a, b) => a - b))
+    // print(arr.sort((a, b) => a - b))
     return duplicat
 }
-print(findDuplicate([1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 7, 5, 4, 2, 2]))
+// print(findDuplicate([1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 7, 5, 4, 2, 2]))
 
 
 function removeDuplicate(arr) {
@@ -70,7 +70,7 @@ function removeDuplicate(arr) {
     });
     return visited
 }
-print(removeDuplicate([1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 7, 5, 4, 2, 2]))
+// print(removeDuplicate([1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 7, 5, 4, 2, 2]))
 
 
 function countFrequency(arr) {
@@ -80,7 +80,7 @@ function countFrequency(arr) {
     });
     return fre
 }
-print(countFrequency([1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 7, 5, 4, 2, 2]))
+// print(countFrequency([1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 7, 5, 4, 2, 2]))
 
 
 function factorial(num) {
@@ -89,19 +89,19 @@ function factorial(num) {
     }
     return num * factorial(num - 1)
 }
-print(factorial(5))
+// print(factorial(5))
 
 
 function flattenNested(arr) {
     return arr.flat(Infinity)
 }
-print(flattenNested([1, 2, [3, 4], 1, [2, 3], [4, 5, [6, 7, 5], 4], 2, 2]))
+// print(flattenNested([1, 2, [3, 4], 1, [2, 3], [4, 5, [6, 7, 5], 4], 2, 2]))
 
 
 function countVoiels(str) {
     return str.match(/[aeiou]/gi).length
 }
-print(countVoiels('bdjgeysijogy'))
+// print(countVoiels('bdjgeysijogy'))
 
 
 function rotateArrayKsteps(arr, k) {
@@ -114,7 +114,7 @@ function rotateArrayKsteps(arr, k) {
     }
     return arr
 }
-print(rotateArrayKsteps([1, 2, 3, 4, 5, 6, 7], 3))
+// print(rotateArrayKsteps([1, 2, 3, 4, 5, 6, 7], 3))
 
 
 // class
@@ -146,8 +146,8 @@ class student extends details {
 }
 const s1 = new student("pk", 23, 8461846168, "AIML", 2025, 'NiT')
 const student1 = s1.getAllDetails()
-print(student1)
-print(student.getCollage(s1))
+// print(student1)
+// print(student.getCollage(s1))
 
 
 function checkAnagram(str1, str2) {
@@ -161,7 +161,7 @@ function checkAnagram(str1, str2) {
     }
     return true
 }
-print(checkAnagram("pradhu", "upahrd"))
+// print(checkAnagram("pradhu", "upahrd"))
 
 function checkAnagram2(str1, str2) {
     if (str1.length !== str2.length) return false
@@ -170,7 +170,7 @@ function checkAnagram2(str1, str2) {
     const reg = new RegExp('^' + str2 + '$')
     return reg.test(str1)
 }
-print(checkAnagram2("pradhu", "urpahd"))
+// print(checkAnagram2("pradhu", "urpahd"))
 
 
 function sentenceCase(str) {
@@ -183,13 +183,13 @@ function sentenceCase(str) {
     });
     return ans.join(" ")
 }
-print(sentenceCase("pradhu kumar verma"))
+// print(sentenceCase("pradhu kumar verma"))
 
 
 function sentenceCase2(str) {
     return str.split(" ").map(word => word[0].toUpperCase() + word.slice(1)).join(" ")
 }
-print(sentenceCase2("pradhu kumar verma"));
+// print(sentenceCase2("pradhu kumar verma"));
 
 
 function mergeSortedArray(arr1, arr2) {
@@ -210,7 +210,7 @@ function mergeSortedArray(arr1, arr2) {
     }
     return ans;
 }
-print(mergeSortedArray([1, 2, 3, 6, 8], [4, 5, 7, 9]));
+// print(mergeSortedArray([1, 2, 3, 6, 8], [4, 5, 7, 9]));
 
 
 function arrayIntersecion(arr1, arr2) {
@@ -222,7 +222,7 @@ function arrayIntersecion(arr1, arr2) {
     })
     return ans;
 }
-print(arrayIntersecion([1, 2, 9, 3, 4, 5], [4, 5, 7, 9]));
+// print(arrayIntersecion([1, 2, 9, 3, 4, 5], [4, 5, 7, 9]));
 
 
 
@@ -261,11 +261,11 @@ let arr = ["1234567890", "123-456-7890", "123 456 7890", "(123) 456 7890", "9112
 
 
 /*
-Explanation of Each parent
-    \b → word boundary, ensures we’re matching full words, not substrings.parent
-    (\w+) → capture group #1, matches one word (\w = letters, digits, underscore).parent
-    \s+ → matches one or more spaces between the words.parent
-    \1 → backreference → matches the same text captured in group #1.parent
+Explanation of Each
+    \b → word boundary, ensures we’re matching full words, not substrings.
+    (\w+) → capture group #1, matches one word (\w = letters, digits, underscore).
+    \s+ → matches one or more spaces between the words.
+    \1 → backreference → matches the same text captured in group #1.
     \b → another word boundary at the end.
 
     Flags:
@@ -278,7 +278,8 @@ function consecutivelyRepeatedWords(str) {
     const regex = /\b(\w+)\s+\1\b/gi;
     let duplicates = str.matchAll(regex)
 
-    duplicates.forEach(word => {             // word => [f + s, f, s]
+    duplicates.forEach(word => {
+        console.log(word)           // word => [f + s, f, s]
         first = word[0].split(" ")[0]
         matches.push(first)
     });

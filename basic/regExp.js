@@ -148,7 +148,9 @@ Regex explained : /(\w)(\d)/g   -> Together: match one word character immediatel
 
 
     // 6. replace(regex, replacement) → replace first/all depending on flag
-    "hello 123".replace(/\d+/, "#"),   // "hello #"
+    "hello 123 456".replace(/\d+/, "#"),   // "hello # 456"
+    "hello 123 456".replace(/\d+/g, "#"),   // "hello # #"
+    "a1b2c3".replace(/\d/, "*"),      // "a*b2c3"
     "a1b2c3".replace(/\d/g, "*"),      // "a*b*c*"
     /*
     Regex: /\d+/    -> .replace(..., "#") → replaces the first match only (because no g flag).
@@ -285,7 +287,6 @@ Regex explained : /(\w)(\d)/g   -> Together: match one word character immediatel
     */
 
 
-
     'bdjgeysijogy'.match(/[aeiou]/gi),  // count voils in string ignor case
 
 
@@ -311,6 +312,7 @@ Regex explained : /(\w)(\d)/g   -> Together: match one word character immediatel
 
     // 🔹 6. Removing Unwanted Characters
     "abc123!@#".replace(/[^a-z0-9]/gi, ""), // "abc123" // ✅ Example: keep only alphanumeric characters.
+    "abc123!@#".replace(/[a-z0-9]/gi, ""), // "!@#" // ✅ Example: remove only alphanumeric characters.
 
 
     // 🔹 7. Lookaheads / Lookbehinds (Advanced Validation) -> Check presence of conditions without consuming characters.
@@ -322,7 +324,7 @@ Regex explained : /(\w)(\d)/g   -> Together: match one word character immediatel
     /World$/.test("Hello World"), // true
 
 
-    // 🔹 9. Optional / Repetition -> 
+    // 🔹 9. Optional / Repetition ->
     "color".match(/colou?r/),  // matches "color" or "colour"
     "ahaaa".match(/ha+/),       // matches "ha", "haa", "haaa"
 
