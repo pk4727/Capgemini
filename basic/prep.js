@@ -225,6 +225,7 @@ function arrayIntersecion(arr1, arr2) {
 print(arrayIntersecion([1, 2, 9, 3, 4, 5], [4, 5, 7, 9]));
 
 
+
 /*
 valid format is:
 
@@ -256,6 +257,7 @@ function validPhone(arr) {
 }
 let arr = ["1234567890", "123-456-7890", "123 456 7890", "(123) 456 7890", "911234567890"]
 // console.log(validPhone(arr))
+
 
 
 /*
@@ -301,6 +303,7 @@ function consecutivelyRepeatedWords2(str) {
 // console.log(consecutivelyRepeatedWords2("Please please help me me Quickly quickly"));
 
 
+
 /*
 Explanation
     . -> capture any char
@@ -326,3 +329,124 @@ function consecutivelyRepeatedLetter(str) {
 }
 // console.log(consecutivelyRepeatedLetter("sooo excited fot this cooool event yesss absolutely"));
 
+
+
+/*
+duplicateContain -> \\b${word}\\b
+
+Step-by-step:
+    \\b → word boundary (start).
+    ${word} → the current token inserted into the pattern.
+    \\b → word boundary (end).
+    'i' flag → case-insensitive.
+        
+    Meaning: match the whole word (as a separate word) anywhere in the tested string, ignoring case.
+        Example results
+            duplicateContain.test("Please") for word = "Please" → true
+            duplicateContain.test("please me") for word = "Please" → true
+            duplicateContain.test("pleased") for word = "Please" → false (because of \b)
+
+
+duplicateWithoutSpace -> /^(\w+)\1$/i  -or- ^(\p{L}+)\1$/iu)
+
+Step-by-step:
+    ^ → start of string.
+    (\w+) → capture one or more “word characters” (\w = [A-Za-z0-9_]) into group 1.
+    \1 → immediately match the exact same text captured in group 1 again.
+    $ → end of string.
+    \p{L} -> is a Unicode property escape (L = Letter: includes A-Z, a-z, á, é, ü, Я, 文, etc.).
+    i → case-insensitive (so "HelloHELLO" works)
+    u → Unicode mode (needed for \p{L}).
+
+    Meaning: the entire string is exactly some word repeated twice back-to-back (no separator). Examples: "hellohello", "abcabc", "Pleaseplease" (case-insensitive). The capture usually becomes half the string (for even lengths) where the first half equals the second half.
+        Example results
+           duplicateWithoutSpace.test("Pleaseplease") → true (group1 = Please, \1 = please)
+           duplicateWithoutSpace.test("meme") → true because m + m? — actually greedy capture will find the correct split if possible; for "meme" group1 can be "me" and \1 "me" → true.
+           duplicateWithoutSpace.test("abcab") → false (not an exact double)
+           duplicateWithoutSpace.test("hello-hello") → false (hyphen is not \w)
+
+
+duplicateWithSpace -> \\b${word}\\s+${word}\\b
+
+Step-by-step:
+    \\b → word boundary (start).
+    ${word} → the first occurrence of the token.
+    \\s+ → one or more whitespace characters (space, tab, newline).
+    ${word} → the second occurrence of the same token.
+    \\b → word boundary (end).
+    'i' → case-insensitive.
+
+    Meaning: find two occurrences of the same token separated by at least one whitespace character (e.g. "hello hello", "hello hello", "hello\t hello"). This will not match glued forms (no whitespace).
+        Example results
+            For word = "Please":
+            /\bPlease\s+Please\b/i.test("Please please") → true (Tabs/newlines count as whitespace so \s+ covers them)
+            /\bPlease\s+Please\b/i.test("Please     please") → true
+            /\bPlease\s+Please\b/i.test("Pleaseplease") → false (no whitespace)
+            /\bPlease\s+Please\b/i.test("Please-Please") → false (hyphen is not whitespace)
+*/
+function consecutivelyRepeatedWords3(str) {
+    const words = str.split(/\s+/);   // split by spaces
+    const matches = [];
+    words.forEach(word => {
+
+        // regex 1: "word" (for duplicate check in matches array)
+        const duplicateContain = new RegExp(`\\b${word}\\b`, 'i')
+
+        // regex 2: doubled word inside itself (like "Pleaseplease")
+        const duplicateWithoutSpace = /^(\w+)\1$/i;
+
+        // regex 3: "word word" (two tokens, with/without spaces)
+        const duplicateWithSpace = new RegExp(`\\b${word}\\s+${word}\\b`, "i");
+
+        // Case 1: handle glued double words like "Pleaseplease"
+        if (duplicateWithoutSpace.test(word) && !duplicateContain.test(matches.join(" "))) {
+            matches.push(word.slice(0, word.length / 2)); // push half (e.g. "Please")
+        }
+
+        // Case 2: handle separated doubles like "help help" or "meme meme"
+        if (duplicateWithSpace.test(str) && !duplicateContain.test(matches.join(" "))) {
+            matches.push(word);
+        }
+    });
+    return matches.join(" ");
+}
+// console.log(consecutivelyRepeatedWords3("Please please help me me Quicklyquickly"));
+
+
+/*
+Write a regex to validate a strong password with these rules:
+    At least 8 characters long
+    Must contain at least 1 lowercase, 1 uppercase, 1 digit, and 1 special character (!@#$%^&*)
+
+Examples ✅
+    Passw0rd!
+    Hello@123
+Not match ❌
+    password (no uppercase, no digit, no special)
+    PASSWORD123 (no lowercase, no special)
+    Pass123 (too short)
+
+    
+Answer Explanation:
+    ^ → start
+    (?=.*[a-z]) → at least one lowercase
+    (?=.*[A-Z]) → at least one uppercase
+    (?=.*\d) → at least one digit
+    (?=.*[!@#$%^&*]) → at least one special
+    [A-Za-z\d!@#$%^&*]{8,} → allowed characters, minimum length 8
+    $ → end
+*/
+function isStrongPassword(pass) {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(pass);
+}
+// console.log(isStrongPassword("Passw0rd!"));     // true
+// console.log(isStrongPassword("Pasw0rd!🙂"));    // false
+// console.log(isStrongPassword("password123"));   // false
+
+
+function isStrongPassword2(pass) {
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/.test(pass);
+}
+// console.log(isStrongPassword2("Passw0rd!"));    // true
+// console.log(isStrongPassword2("Pasw0rd!🙂"));   // true
+// console.log(isStrongPassword2("password123"));  // false
