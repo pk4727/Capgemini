@@ -18,11 +18,9 @@ test("Home", async ({ page }) => {
 })
 
 
-// locating elements by property / CSS / XPath  -> unique or multiple
-test("locating element", async ({ page }) => {
+// locating elements by property / CSS / XPath
+test("locating unique or single element", async ({ page }) => {
     await page.goto('/')
-
-    // ================================================== single (unique locator) ===============================================================
 
     // await page.locator('[id="login2"]').click(); // by property
     // await page.locator("id=login2").click();     // by property
@@ -40,12 +38,17 @@ test("locating element", async ({ page }) => {
     // await page.locator("//button[normalize-space()='Log in']").click()
     await page.click("//button[normalize-space()='Log in']")
 
+    await page.pause()
+})
 
 
-    // ================================================== multiple (comman locator) ===============================================================
+test("locating comman or multiple element", async ({ page }) => {
+    await page.goto('/index.html')
 
-    await page.locator('a').first().waitFor() // waitfor loading page fully
-    await page.waitForSelector("a")
+    // wait for loading page fully
+    await page.locator('a').first().waitFor()   // waits specifically for the first <a> to be ready.
+    await page.waitForSelector("a")             // waits for any <a> to appear.
+    await page.pause()                          // halts execution for debugging.
 
     // ------------------- locator -----------------
 
@@ -101,42 +104,4 @@ test("Assertion on element", async ({ page }) => {
 })
 
 
-// test.only("Built-In Locator", async ({ page }) => {
 
-// })
-
-test.only("locating element2", async ({ page }) => {
-    await page.goto('/')
-
-    await page.locator('a').first().waitFor() // waitfor loading page fully
-    await page.waitForSelector("a")
-
-    // ------------------- locator -----------------
-
-    // page.locator + .count()
-    const linkCount = page.locator("a")   // comman locator of all link
-    const count = await linkCount.count()
-    console.log({ count })
-
-    // page.locator() + .allInnerTexts() → gives you an array of strings directly.
-    const products = await page.locator("div #tbodyid h4 a").allInnerTexts();
-    // const products = await page.locator(".card-title a").allInnerTexts();
-    for (const product of products) {
-        console.log(product)
-    }
-
-    // ------------------ $$ ----------------
-
-    // page.$$ + .length
-    const linksLength = await page.$$("a") // $$ = all and returns an array of ElementHandles as promise)
-    const len = linksLength.length;
-    console.log({ len })
-
-    // page.$$ + .textContent() → gives you an array of ElementHandles, and you manually extract their text.
-    const products2 = await page.$$(".card-title a");
-    for (const product of products2) {
-        console.log(await product.textContent())
-    }
-
-    await page.pause()
-})
