@@ -1,0 +1,21 @@
+{
+  "name": "capgemini-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pk4727/Capgemini.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pk4727/Capgemini/issues"
+  },
+  "homepage": "https://github.com/pk4727/Capgemini#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.1"
+  }
+}
