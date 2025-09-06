@@ -104,4 +104,6 @@ test("Assertion on element", async ({ page }) => {
 })
 
 
-
+test.only("Built-In Locator", async ({ page }) => {
+    await page.goto('/index.html')
+})
