@@ -6,7 +6,7 @@
   "scripts": {
     "headed":"npx playwright test --headed",
     "headless":"npx playwright test",
-    "UI":"npx playwright test --ui",
+    "UI":"npx playwright test --ui"
   },
   "repository": {
     "type": "git",
