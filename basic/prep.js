@@ -705,7 +705,7 @@ console.log(
     /^([012][1-9]|3[01])\/(0\d|1[0-2])\/\d{4}$/.test("10/12/20303") // false
 )
 
-*/
+// ================================================================================================================================
 
 // Rearrange an array such that all odd numbers appear before even numbers, while maintaining their original order.
 // Example: [4, 1, 3, 2, 7, 8] → [1, 3, 7, 4, 2, 8].
@@ -891,17 +891,74 @@ console.log(str.match(/(?<=#)\w+/g))
 // At least 8 characters and Contains uppercase, lowercase, digit, special char but No spaces
 console.log(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#%^&*]{8,}/.test("Pr1@PPPPPP"))
 
+*/
+
+console.log("pradhuman kumar verma from giridih jharkhand and studied for Nit"
+    .split(" ")
+    .map((ele, index) => index % 3 === 2 ? ele.length : ele)
+    .join(" "))
 
 
-// OOP / Classes (2 Qs)
+console.log(new Set("programming".split("")).size)
 
-// Create a class BankAccount with properties accountNumber, balance. Add methods:
-// deposit(amount)
-// withdraw(amount) (check sufficient balance)
-// getBalance()
 
-// Create a class Playlist to store songs (title, artist). Add methods:
-// addSong(title, artist)
-// removeSong(title)
-// getAllSongs()
-// searchByArtist(artist)
+function firstUniqueChar(str) {
+    for (let char of str) {
+        let reg = new RegExp(char, "g");
+        let match = str.match(reg);
+        if (match.length === 1) {
+            return char; // exit immediately when found
+        }
+    }
+}
+console.log(firstUniqueChar("swiss")); // w
+
+function equalArr(arr1, arr2) {
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+            return false
+        }
+    }
+    return true
+}
+console.log(equalArr([1, 2, 3], [1, 2, 3]))
+
+
+function subArr(arr) {
+    let sub = [[]]
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j <= arr.length; j++) {
+            const curr = arr.slice(i, j)
+            if (!sub.includes(curr)) {
+                sub.push(curr)
+            }
+        }
+    }
+    return sub
+}
+console.log(subArr([1, 2]))
+
+
+console.log([1, [2, [3, [4]]]].flat(Infinity))
+
+arr = [1, 2, 3, 4, 5], k = 2
+for (let i = 0; i < k; i++) {
+    arr.unshift(arr.pop())
+}
+console.log(arr)
+
+
+str = "listen".split("").sort().join("")
+str2 = "silent".split("").sort().join("")
+console.log(str === str2)
+
+
+function getPermutations(str) {
+  if (str.length <= 1) return [str];
+  return [...str].flatMap((ch, i) =>
+    getPermutations(str.slice(0, i) + str.slice(i + 1)).map(p => ch + p)
+  );
+}
+
+console.log(getPermutations("abc"));
+// [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
