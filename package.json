@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {},
   "repository": {
+    "headed":"npx playwright test --headed",
+    "headless":"npx playwright test",
+    "UI":"npx playwright test --ui",
     "type": "git",
     "url": "git+https://github.com/pk4727/Capgemini.git"
   },
